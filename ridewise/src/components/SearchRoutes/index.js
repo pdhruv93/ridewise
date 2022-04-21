@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Pusher from 'pusher-js';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { userDataAtom } from '../LoginButton';
 import { toastAtom } from '../ToastNotification';
@@ -18,6 +19,11 @@ export default function SearchRoutes() {
   const [routesList, setRoutesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const [, setToastData] = useRecoilState(toastAtom);
+
+  const pusher = new Pusher(process.env.REACT_APP_PUHSER_APP_KEY, {
+    cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
+    useTLS: true,
+  });
 
   function deleteRoute(routeId) {
     console.log(`Deleting routeId: ${routeId}`);
@@ -122,6 +128,17 @@ export default function SearchRoutes() {
         `${process.env.REACT_APP_MONGO_DB_BASE_URL}/getAllRoutes?secret=${process.env.REACT_APP_REALM_SECRET}`
       )
       .then(routes => setRoutesList(routes.data));
+
+    // Realtime Data changes
+    const channel = pusher.subscribe(process.env.REACT_APP_PUSHER_CHANNEL);
+    channel.bind('changed', () => {
+      console.log('Pusher event recieved...');
+      axios
+        .get(
+          `${process.env.REACT_APP_MONGO_DB_BASE_URL}/getAllRoutes?secret=${process.env.REACT_APP_REALM_SECRET}`
+        )
+        .then(routes => setRoutesList(routes.data));
+    });
   }, []);
 
   useEffect(() => {

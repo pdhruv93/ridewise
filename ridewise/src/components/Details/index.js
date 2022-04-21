@@ -15,7 +15,7 @@ export default function About() {
           </Typography>
           <Typography>
             ridewise connects people who wants to travel with drivers who have
-            extra seats. Trusted carpooling. Verified profiles.
+            extra seats. Trusted carpooling.
           </Typography>
 
           <CustomStepper />

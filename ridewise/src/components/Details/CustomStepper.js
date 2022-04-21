@@ -33,7 +33,7 @@ function CustomStepper() {
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
+        {steps.map(step => (
           <Step key={step.label}>
             <StepLabel>{step.label}</StepLabel>
             <StepContent>
@@ -45,7 +45,7 @@ function CustomStepper() {
                     onClick={handleNext}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                    Got it!
                   </Button>
                 </div>
               </Box>
