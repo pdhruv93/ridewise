@@ -1,4 +1,8 @@
-<h2>Checkout the app hosted here https://ridewise-xstzz.mongodbstitch.com/</h2>
+<h2>
+Carpooling hobby app using React, MongoDB Atlas, Realm
+<br>
+Checkout the app hosted here https://ridewise-xstzz.mongodbstitch.com/
+</h2>
 <br>
 <h2>React MUI components and Grid Layout</h2>
 <img src="screenshots/1.PNG">
