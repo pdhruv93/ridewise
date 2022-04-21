@@ -19,7 +19,7 @@
 <img src="screenshots/6.PNG">
 <br>
 <h2>Pusher for reciveing Real time data change events</h2>
-<img src="screenshots/puhsher.png">
+<img src="screenshots/pusher.png">
 <br>
 <h2>Mongo Realm Trigger for Real time data change events</h2>
 <img src="screenshots/5.PNG">
