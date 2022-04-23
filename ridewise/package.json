@@ -1,6 +1,7 @@
 {
   "name": "ridewise",
   "version": "0.1.0",
+  "homepage": "https://ridewise-xstzz.mongodbstitch.com",
   "private": true,
   "dependencies": {
     "@date-io/moment": "^2.13.1",

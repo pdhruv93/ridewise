@@ -10,7 +10,7 @@ export const userDataAtom = atom({
 });
 
 export default function LoginButton() {
-  const [userData, setUserData] = useRecoilState(userDataAtom);
+  const [, setUserData] = useRecoilState(userDataAtom);
   const [, setToastData] = useRecoilState(toastAtom);
 
   const onSuccess = loginData => {
@@ -44,7 +44,7 @@ export default function LoginButton() {
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Login"
-        isSignedIn={userData ? true : false}
+        isSignedIn={true}
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
