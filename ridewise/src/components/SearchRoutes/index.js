@@ -17,7 +17,6 @@ import MailIcon from '@mui/icons-material/Mail';
 export default function SearchRoutes() {
   const currUser = useRecoilValue(userDataAtom);
   const [routesList, setRoutesList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
   const [, setToastData] = useRecoilState(toastAtom);
 
   const pusher = new Pusher(process.env.REACT_APP_PUHSER_APP_KEY, {
@@ -79,25 +78,22 @@ export default function SearchRoutes() {
       headerName: 'Driver',
       width: 100,
       renderCell: value => {
-        let user = usersList.filter(u => u.userId === value.row.creator);
         return (
-          <Tooltip title={user[0] ? user[0].name : ''}>
-            <Avatar sx={{ width: 30, height: 30 }} src={user[0]?.profilePic} />
+          <Tooltip title={value.row.creatorDetails[0].name}>
+            <Avatar
+              sx={{ width: 30, height: 30 }}
+              src={value.row.creatorDetails[0].profilePic}
+            />
           </Tooltip>
         );
       },
-      valueGetter: params => {
-        let user = usersList.filter(u => u.userId === params.row.creator);
-        return user[0] ? user[0].name : '';
-      },
+      valueGetter: value => value.row.creatorDetails[0].name,
     },
     {
       field: 'manage',
       headerName: 'Connect',
       width: 100,
       renderCell: value => {
-        let user = usersList.filter(u => u.userId === value.row.creator);
-
         return (
           currUser &&
           (value.row.creator === currUser.googleId ? (
@@ -112,7 +108,7 @@ export default function SearchRoutes() {
             <IconButton
               aria-label="mail"
               color="primary"
-              href={`mailto:${user[0].email}`}
+              href={`mailto:${value.row.creatorDetails[0].email}`}
             >
               <MailIcon />
             </IconButton>
@@ -140,19 +136,6 @@ export default function SearchRoutes() {
         .then(routes => setRoutesList(routes.data));
     });
   }, []);
-
-  useEffect(() => {
-    let creators = [];
-    routesList.forEach(route => creators.push(route.creator));
-
-    axios
-      .get(
-        `${process.env.REACT_APP_MONGO_DB_BASE_URL}/getUsers?secret=${
-          process.env.REACT_APP_REALM_SECRET
-        }&userIds=${creators.join(',')}`
-      )
-      .then(users => setUsersList(users.data));
-  }, [routesList]);
 
   return routesList ? (
     <div style={{ height: 400, width: '100%' }}>
