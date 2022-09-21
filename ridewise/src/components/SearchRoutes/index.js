@@ -19,7 +19,7 @@ export default function SearchRoutes() {
   const [routesList, setRoutesList] = useState([]);
   const [, setToastData] = useRecoilState(toastAtom);
 
-  const pusher = new Pusher(process.env.REACT_APP_PUHSER_APP_KEY, {
+  const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
     cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
     useTLS: true,
   });
@@ -141,7 +141,7 @@ export default function SearchRoutes() {
     <div style={{ height: 400, width: '100%' }}>
       <Typography variant="h5">Search for drivers</Typography>
       <DataGrid
-        getRowId={row => row._id.$oid}
+        getRowId={row => row._id}
         rows={routesList}
         columns={columns}
         pageSize={5}
