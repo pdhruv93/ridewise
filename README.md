@@ -2,7 +2,6 @@
 Carpooling hobby app using React, MongoDB Atlas, Realm
 <br>
 Checkout the app hosted here https://ridewise-xstzz.mongodbstitch.com/
-Chekout React Native version here https://github.com/pdhruv93/ridewise-react-native
 </h2>
 <br>
 <h2>React MUI components and Grid Layout</h2>
