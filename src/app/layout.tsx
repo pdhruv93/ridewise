@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
-import { SimpleGrid } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
+import { Navbar } from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,21 +21,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  carpoolsList,
-  createNew,
+  children,
 }: Readonly<{
   children: React.ReactNode;
-  carpoolsList: React.ReactNode;
-  createNew: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Provider>
-          <SimpleGrid minChildWidth="md">
-            {carpoolsList}
-            {createNew}
-          </SimpleGrid>
+          <Container gap="6" mx="20" my="4">
+            <Navbar />
+
+            {children}
+          </Container>
         </Provider>
       </body>
     </html>
