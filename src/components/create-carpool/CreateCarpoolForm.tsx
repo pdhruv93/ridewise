@@ -27,6 +27,12 @@ export function CreateCarpoolForm() {
     errors: [],
   });
 
+  console.log(state);
+
+  const startPointError = state.errors.find((error) =>
+    error.path.includes("startPoint")
+  );
+
   console.log(state, isPending);
 
   return (
@@ -34,8 +40,29 @@ export function CreateCarpoolForm() {
       <VStack gap="4" align="flex-start" w="full">
         <Field
           label="Start point"
-          invalid={false}
-          errorText="No error"
+          invalid={!!startPointError}
+          errorText={startPointError?.message}
+          w="full"
+        >
+          <SelectRoot variant="subtle" collection={places}>
+            <SelectTrigger>
+              <SelectValueText placeholder="Select start point" />
+            </SelectTrigger>
+
+            <SelectContent>
+              {places.items.map((movie) => (
+                <SelectItem item={movie} key={movie.value}>
+                  {movie.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </SelectRoot>
+        </Field>
+
+        <Field
+          label="End Point"
+          invalid={!!startPointError}
+          errorText={startPointError?.message}
           w="full"
         >
           <SelectRoot variant="subtle" collection={places}>
