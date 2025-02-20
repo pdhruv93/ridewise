@@ -34,7 +34,7 @@ export function MapContainer({ children }: PropsWithChildren) {
           <Container
             pos="relative"
             px="20"
-            py="15"
+            py="20"
             w="full"
             maxW="full"
             h="full"
