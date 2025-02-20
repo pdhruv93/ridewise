@@ -1,26 +1,11 @@
 "use client";
 
-import {
-  SelectContent,
-  SelectItem,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "@/components/ui/select";
-import { Button, createListCollection, VStack } from "@chakra-ui/react";
+import { Button, VStack } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { createCarpool } from "./createCarpoolAction";
 import { useActionState } from "react";
 import { initialState } from "./formSchema";
-
-const places = createListCollection({
-  items: [
-    { label: "React.js", value: "react" },
-    { label: "Vue.js", value: "vue" },
-    { label: "Angular", value: "angular" },
-    { label: "Svelte", value: "svelte" },
-  ],
-});
+import { AutocompleteInput } from "../maps/AutocompleteInput";
 
 export function CreateCarpoolForm() {
   const [state, formAction, isPending] = useActionState(
@@ -40,26 +25,7 @@ export function CreateCarpoolForm() {
           invalid={!!startLocationError}
           errorText={startLocationError?.message}
           w="full"
-        >
-          <SelectRoot
-            name="startLocation"
-            variant="subtle"
-            collection={places}
-            defaultValue={[state.formData.startLocation]}
-          >
-            <SelectTrigger>
-              <SelectValueText placeholder="Select start point" />
-            </SelectTrigger>
-
-            <SelectContent>
-              {places.items.map((movie) => (
-                <SelectItem item={movie} key={movie.value}>
-                  {movie.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectRoot>
-        </Field>
+        ></Field>
 
         <Button
           type="submit"
