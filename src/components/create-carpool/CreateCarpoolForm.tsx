@@ -36,8 +36,6 @@ export function CreateCarpoolForm() {
     return <>Loading...</>;
   }
 
-  console.log(":::Client", state.formData);
-
   return (
     <form action={formAction}>
       <VStack gap="4" align="flex-start" w="full">
