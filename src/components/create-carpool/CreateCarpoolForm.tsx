@@ -32,10 +32,6 @@ export function CreateCarpoolForm() {
     error.path.includes("startLocation")
   );
 
-  if (isPending) {
-    return <>Loading...</>;
-  }
-
   return (
     <form action={formAction}>
       <VStack gap="4" align="flex-start" w="full">
@@ -65,7 +61,13 @@ export function CreateCarpoolForm() {
           </SelectRoot>
         </Field>
 
-        <Button type="submit" size="lg">
+        <Button
+          variant="solid"
+          colorPalette="teal"
+          loading={isPending}
+          loadingText="Creating"
+          spinnerPlacement="start"
+        >
           Submit
         </Button>
       </VStack>
