@@ -62,11 +62,12 @@ export function CreateCarpoolForm() {
         </Field>
 
         <Button
+          type="submit"
           variant="solid"
           colorPalette="teal"
           loading={isPending}
-          loadingText="Creating"
           spinnerPlacement="start"
+          px="4"
         >
           Submit
         </Button>
