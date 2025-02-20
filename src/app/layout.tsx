@@ -4,6 +4,7 @@ import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Container } from "@chakra-ui/react";
 import { Navbar } from "@/components/navbar";
+import MapContainer from "@/components/maps/MapContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Provider>
-          <Container gap="6" mx="20" my="4">
-            <Navbar />
+          <MapContainer />
+          <Navbar />
 
+          <Container mx="20" my="4">
             {children}
           </Container>
         </Provider>

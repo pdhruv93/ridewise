@@ -65,7 +65,9 @@ export function CreateCarpoolForm() {
           </SelectRoot>
         </Field>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" size="lg">
+          Submit
+        </Button>
       </VStack>
     </form>
   );
