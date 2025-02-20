@@ -1,30 +1,28 @@
 "use server";
 
-import { z, type ZodIssue } from "zod";
-import { formSchema } from "./formSchema";
-
-type FormState = {
-  formData: z.infer<typeof formSchema> | undefined;
-  errors: ZodIssue[];
-};
+import { formSchema, type FormState, initialState } from "./formSchema";
 
 export async function createCarpool(
-  prevState: FormState,
-  formData: FormData
+  _: FormState,
+  newFormData: FormData
 ): Promise<FormState> {
+  const formData: FormState["formData"] = {
+    startLocation: newFormData.get("startLocation") as string,
+    endLocation: newFormData.get("startLocation") as string,
+    seats: Number(newFormData.get("startLocation") as string),
+    startTime: Number(newFormData.get("startLocation") as string),
+  };
+
   const result = formSchema.safeParse(formData);
 
   if (result.error?.errors) {
     return {
-      formData: prevState.formData,
+      formData,
       errors: result.error?.errors,
     };
   }
 
   // TODO: Submit the form
 
-  return {
-    formData: prevState.formData,
-    errors: [],
-  };
+  return initialState;
 }
