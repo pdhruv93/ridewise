@@ -33,7 +33,7 @@ export default function RootLayout({
           <MapContainer />
           <Navbar />
 
-          <Container mx="20" my="4">
+          <Container px="20" py="4" w="full" maxW="full" h="full">
             {children}
           </Container>
         </Provider>

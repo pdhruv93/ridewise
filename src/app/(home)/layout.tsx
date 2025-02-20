@@ -9,7 +9,7 @@ export default function RootLayout({
   createCarpool: React.ReactNode;
 }>) {
   return (
-    <SimpleGrid minChildWidth="md">
+    <SimpleGrid minChildWidth="md" maxW="full">
       {carpoolsList}
       {createCarpool}
     </SimpleGrid>

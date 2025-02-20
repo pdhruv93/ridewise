@@ -1,5 +1,12 @@
 import { CreateCarpoolForm } from "@/components/create-carpool/CreateCarpoolForm";
+import { Card } from "@chakra-ui/react";
 
 export default function AddCarPool() {
-  return <CreateCarpoolForm />;
+  return (
+    <Card.Root w="md" justifySelf="end">
+      <Card.Body p="6">
+        <CreateCarpoolForm />
+      </Card.Body>
+    </Card.Root>
+  );
 }
