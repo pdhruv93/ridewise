@@ -2,7 +2,6 @@
 
 import React, { PropsWithChildren } from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import "./MyComponent.module.css";
 import { Box, Container } from "@chakra-ui/react";
 
 const defaultCenter = {
