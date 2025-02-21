@@ -25,7 +25,9 @@ export function CreateCarpoolForm() {
           invalid={!!startLocationError}
           errorText={startLocationError?.message}
           w="full"
-        ></Field>
+        >
+          <AutocompleteInput />
+        </Field>
 
         <Button
           type="submit"
