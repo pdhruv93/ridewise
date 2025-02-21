@@ -28,7 +28,7 @@ export function MapContainer({ children }: PropsWithChildren) {
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
-            // gestureHandling: "none",
+            gestureHandling: "none",
           }}
           mapContainerStyle={{ width: "100%", height: "100%", zIndex: 0 }}
         >
