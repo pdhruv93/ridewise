@@ -3,12 +3,11 @@
 import { Box, Input } from "@chakra-ui/react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
 import { Ref, useRef } from "react";
+import { type Place } from "./types";
 
 interface AutocompleteInputProps {
   placeholder?: string;
-  onPlaceSelect?: (
-    address: google.maps.places.PlaceResult[] | undefined
-  ) => void;
+  onPlaceSelect?: (address: Place) => void;
 }
 
 export function AutocompleteInput({
@@ -18,8 +17,21 @@ export function AutocompleteInput({
   const inputRef = useRef<google.maps.places.SearchBox | null>(null);
 
   const handlePlacesChanged = () => {
-    const address = inputRef.current?.getPlaces();
-    onPlaceSelect?.(address);
+    const addresses = inputRef.current?.getPlaces();
+    const place = addresses?.at(0);
+
+    if (place) {
+      onPlaceSelect?.({
+        placeId: place.place_id || "",
+        placeName: place.name || "",
+        fullAddress: place.formatted_address || "",
+        vicinity: place.vicinity || "",
+        geometry: {
+          lat: place.geometry?.location?.lat() || 0,
+          lng: place.geometry?.location?.lng() || 0,
+        },
+      });
+    }
   };
 
   return (

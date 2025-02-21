@@ -2,13 +2,19 @@
 
 import { Button, Input, VStack, Field } from "@chakra-ui/react";
 import { createCarpool } from "./create-carpool-action";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { initialState } from "./form-schema";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { PickupSlots } from "./pickup-slots";
 import { GenderPreference } from "./gender-preference";
+import { type Place } from "@/components/maps/types";
 
 export function CreateCarpoolForm() {
+  const [locations, setLocations] = useState<{
+    startLocation: Place | null;
+    endLocation: Place | null;
+  }>({ startLocation: null, endLocation: null });
+
   const [state, formAction, isPending] = useActionState(
     createCarpool,
     initialState
@@ -23,14 +29,30 @@ export function CreateCarpoolForm() {
       <VStack gap="6" align="flex-start" w="full">
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>Start location</Field.Label>
-          <AutocompleteInput placeholder="Start location" />
+          <AutocompleteInput
+            placeholder="Start location"
+            onPlaceSelect={(place) =>
+              setLocations((currState) => ({
+                ...currState,
+                startLocation: place,
+              }))
+            }
+          />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
         </Field.Root>
 
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>End location</Field.Label>
-          <AutocompleteInput placeholder="Start location" />
+          <AutocompleteInput
+            placeholder="End location"
+            onPlaceSelect={(place) =>
+              setLocations((currState) => ({
+                ...currState,
+                endLocation: place,
+              }))
+            }
+          />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
         </Field.Root>
@@ -51,7 +73,7 @@ export function CreateCarpoolForm() {
           <Input
             name="seats"
             placeholder="Extra seats"
-            defaultValue={state.formData.seats}
+            defaultValue={Number(state.formData.seats)}
             type="number"
             max="3"
             min="1"

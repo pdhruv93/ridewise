@@ -1,8 +1,9 @@
 import { z, type ZodIssue } from "zod";
+import { placeSchema } from "@/components/maps/types";
 
 export const formSchema = z.object({
-  startLocation: z.string(),
-  endLocation: z.string(),
+  startLocation: placeSchema.nullable(),
+  endLocation: placeSchema.nullable(),
   pickupSlot: z.enum([
     "6-8",
     "8-10",
@@ -23,8 +24,8 @@ export type FormState = {
 
 export const initialState: FormState = {
   formData: {
-    startLocation: "",
-    endLocation: "",
+    startLocation: null,
+    endLocation: null,
     pickupSlot: "8-10",
     seats: 2,
     genderPreference: "Any",
