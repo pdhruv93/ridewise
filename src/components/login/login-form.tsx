@@ -11,12 +11,13 @@ export function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, initialState);
 
   useEffect(() => {
-    toaster.create({
-      placement: "bottom",
-      title: "Use the link sent on the mail to login",
-      type: "success",
-    });
-  }, [state]);
+    if (state.submitted) {
+      toaster.create({
+        title: "Use the link sent on the mail to login",
+        type: "success",
+      });
+    }
+  }, [state.submitted]);
 
   return (
     <form action={formAction}>

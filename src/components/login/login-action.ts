@@ -16,6 +16,7 @@ export async function login(
   if (result.error?.errors) {
     return {
       formData,
+      submitted: false,
       error: "Invalid email",
     };
   }
@@ -26,9 +27,13 @@ export async function login(
   if (error) {
     return {
       formData,
+      submitted: false,
       error: error.message,
     };
   }
 
-  return initialState;
+  return {
+    ...initialState,
+    submitted: true,
+  };
 }
