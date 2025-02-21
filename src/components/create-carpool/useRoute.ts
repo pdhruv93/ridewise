@@ -1,13 +1,15 @@
 import { useActionState, useRef, useState } from "react";
 import { createCarpool } from "./create-carpool-action";
 import { initialState } from "./form-schema";
+import { useGoogleMap } from "@react-google-maps/api";
 
 export function useRoute() {
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
-  const [route, setRoute] = useState<google.maps.DirectionsRoute | undefined>(
-    undefined
-  );
+  const [directions, setDirections] = useState<
+    google.maps.DirectionsResult | undefined
+  >(undefined);
+  const map = useGoogleMap();
 
   const [formState, formAction, isPending] = useActionState(
     createCarpool,
@@ -29,13 +31,14 @@ export function useRoute() {
       });
 
       if (results.routes.length) {
-        setRoute(results.routes.at(0));
+        setDirections(results);
+        map?.setOptions({ gestureHandling: "cooperative" });
       }
     }
   };
 
   return {
-    computedRoute: route,
+    computedDirections: directions,
     startLocationRef,
     endLocationRef,
     formAction,
