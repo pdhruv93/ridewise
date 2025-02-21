@@ -22,7 +22,7 @@ export function AutocompleteInput({ onPlaceSelect }: AutocompleteInputProps) {
       onLoad={(ref) => (inputRef.current = ref)}
       onPlacesChanged={handlePlacesChanged}
     >
-      <Input ref={inputRef} placeholder="Start location" w="full" />
+      <Input ref={inputRef} placeholder="Start location" w="full" px="2" />
     </StandaloneSearchBox>
   );
 }

@@ -1,6 +1,7 @@
 import { Container, Heading } from "@chakra-ui/react";
 import Link from "next/link";
 import { Login } from "@/components/login";
+import { Suspense } from "react";
 
 export function Navbar() {
   return (
@@ -20,7 +21,9 @@ export function Navbar() {
         </Heading>
       </Link>
 
-      <Login />
+      <Suspense>
+        <Login />
+      </Suspense>
     </Container>
   );
 }
