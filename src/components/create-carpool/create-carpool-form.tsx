@@ -2,10 +2,10 @@
 
 import { Button, VStack } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
-import { createCarpool } from "./createCarpoolAction";
+import { createCarpool } from "./create-carpool-action";
 import { useActionState } from "react";
-import { initialState } from "./formSchema";
-import { AutocompleteInput } from "../maps/AutocompleteInput";
+import { initialState } from "./form-schema";
+import { AutocompleteInput } from "../maps/auto-complete-input";
 
 export function CreateCarpoolForm() {
   const [state, formAction, isPending] = useActionState(
