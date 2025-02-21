@@ -11,11 +11,15 @@
   "dependencies": {
     "@chakra-ui/react": "^3.8.0",
     "@emotion/react": "^11.14.0",
+    "@react-google-maps/api": "^2.20.6",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.48.1",
     "next": "15.1.7",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.5.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
