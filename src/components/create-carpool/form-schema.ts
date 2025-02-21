@@ -19,6 +19,7 @@ export const formSchema = z.object({
 
 export type FormState = {
   formData: z.infer<typeof formSchema>;
+  submitted: boolean;
   errors: ZodIssue[];
 };
 
@@ -30,5 +31,6 @@ export const initialState: FormState = {
     seats: 2,
     genderPreference: "Any",
   },
+  submitted: false,
   errors: [],
 };

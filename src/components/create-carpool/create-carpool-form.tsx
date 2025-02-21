@@ -1,28 +1,21 @@
 "use client";
 
-import { Button, Input, VStack, Field } from "@chakra-ui/react";
-import { createCarpool } from "./create-carpool-action";
-import { useActionState, useState } from "react";
-import { initialState } from "./form-schema";
+import { Button, Input, VStack, Field, ButtonGroup } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { PickupSlots } from "./pickup-slots";
 import { GenderPreference } from "./gender-preference";
-import { type Place } from "@/components/maps/types";
+import { useRoute } from "./useRoute";
 
 export function CreateCarpoolForm() {
-  const [locations, setLocations] = useState<{
-    startLocation: Place | null;
-    endLocation: Place | null;
-  }>({ startLocation: null, endLocation: null });
-
-  const [state, formAction, isPending] = useActionState(
-    createCarpool,
-    initialState
-  );
-
-  const startLocationError = state.errors.find((error) =>
-    error.path.includes("startLocation")
-  );
+  const {
+    startLocationRef,
+    endLocationRef,
+    formAction,
+    isPending,
+    formState,
+    startLocationError,
+    calculateRoute,
+  } = useRoute();
 
   return (
     <form action={formAction}>
@@ -31,12 +24,7 @@ export function CreateCarpoolForm() {
           <Field.Label>Start location</Field.Label>
           <AutocompleteInput
             placeholder="Start location"
-            onPlaceSelect={(place) =>
-              setLocations((currState) => ({
-                ...currState,
-                startLocation: place,
-              }))
-            }
+            ref={startLocationRef}
           />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
@@ -44,15 +32,7 @@ export function CreateCarpoolForm() {
 
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>End location</Field.Label>
-          <AutocompleteInput
-            placeholder="End location"
-            onPlaceSelect={(place) =>
-              setLocations((currState) => ({
-                ...currState,
-                endLocation: place,
-              }))
-            }
-          />
+          <AutocompleteInput placeholder="End location" ref={endLocationRef} />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
         </Field.Root>
@@ -73,7 +53,7 @@ export function CreateCarpoolForm() {
           <Input
             name="seats"
             placeholder="Extra seats"
-            defaultValue={Number(state.formData.seats)}
+            defaultValue={Number(formState.formData.seats)}
             type="number"
             max="3"
             min="1"
@@ -90,16 +70,22 @@ export function CreateCarpoolForm() {
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
         </Field.Root>
 
-        <Button
-          type="submit"
-          variant="solid"
-          colorPalette="teal"
-          loading={isPending}
-          spinnerPlacement="start"
-          px="4"
-        >
-          Submit
-        </Button>
+        <ButtonGroup gap="4">
+          <Button px="4" onClick={calculateRoute}>
+            Preview
+          </Button>
+
+          <Button
+            type="submit"
+            variant="solid"
+            colorPalette="teal"
+            loading={isPending}
+            spinnerPlacement="start"
+            px="4"
+          >
+            Submit
+          </Button>
+        </ButtonGroup>
       </VStack>
     </form>
   );
