@@ -5,7 +5,7 @@ import { Field } from "@/components/ui/field";
 import { createCarpool } from "./create-carpool-action";
 import { useActionState } from "react";
 import { initialState } from "./form-schema";
-import { AutocompleteInput } from "../maps/auto-complete-input";
+import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 
 export function CreateCarpoolForm() {
   const [state, formAction, isPending] = useActionState(

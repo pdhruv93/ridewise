@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverArrow,
   PopoverBody,
-} from "../ui/popover";
+} from "@/components/ui/popover";
 import { LoginForm } from "./login-form";
 
 export function Login() {
@@ -20,7 +20,7 @@ export function Login() {
         <Button px="4">Login</Button>
       </PopoverTrigger>
 
-      <PopoverContent>
+      <PopoverContent p="4">
         <PopoverArrow />
 
         <PopoverBody>
