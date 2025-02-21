@@ -39,7 +39,7 @@ export function CreateCarpoolForm() {
 
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>Pickup slot</Field.Label>
-          <PickupSlots />
+          <PickupSlots defaultValue={[formState.formData.pickupSlot]} />
 
           <Field.HelperText>
             You can discuss flexibility when someone is willing to join this
@@ -53,11 +53,11 @@ export function CreateCarpoolForm() {
           <Input
             name="seats"
             placeholder="Extra seats"
-            defaultValue={Number(formState.formData.seats)}
             type="number"
             max="3"
             min="1"
             px="2"
+            defaultValue={Number(formState.formData.seats)}
           />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
@@ -65,7 +65,9 @@ export function CreateCarpoolForm() {
 
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>Gender Preference</Field.Label>
-          <GenderPreference />
+          <GenderPreference
+            defaultValue={[formState.formData.genderPreference]}
+          />
 
           <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
         </Field.Root>

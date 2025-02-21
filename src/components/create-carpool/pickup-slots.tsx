@@ -19,9 +19,18 @@ const pickupSlots = createListCollection({
   ],
 });
 
-export function PickupSlots() {
+interface PickupSlotsProps {
+  defaultValue: string[];
+}
+
+export function PickupSlots({ defaultValue }: PickupSlotsProps) {
   return (
-    <SelectRoot collection={pickupSlots} width="full" name="pickupSlot">
+    <SelectRoot
+      collection={pickupSlots}
+      width="full"
+      name="pickupSlot"
+      defaultValue={defaultValue}
+    >
       <SelectTrigger>
         <SelectValueText placeholder="Select pickup slot" />
       </SelectTrigger>

@@ -15,9 +15,18 @@ const pickupSlots = createListCollection({
   ],
 });
 
-export function GenderPreference() {
+interface GenderPreferenceProps {
+  defaultValue: string[];
+}
+
+export function GenderPreference({ defaultValue }: GenderPreferenceProps) {
   return (
-    <SelectRoot collection={pickupSlots} width="full" name="genderPreference">
+    <SelectRoot
+      collection={pickupSlots}
+      width="full"
+      name="genderPreference"
+      defaultValue={defaultValue}
+    >
       <SelectTrigger>
         <SelectValueText placeholder="Select gender preference" />
       </SelectTrigger>

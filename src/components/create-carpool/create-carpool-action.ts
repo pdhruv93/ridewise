@@ -1,31 +1,39 @@
 "use server";
 
-import { type Place } from "@/components/maps/types";
 import { formSchema, type FormState, initialState } from "./form-schema";
 
 export async function createCarpool(
   _: FormState,
   newFormData: FormData
 ): Promise<FormState> {
-  console.log("::::", newFormData);
-
   const formData: FormState["formData"] = {
-    startLocation: newFormData.get("startLocation") as Place,
-    endLocation: newFormData.get("endLocation") as Place,
+    startLocation: newFormData.get("startLocation") as string,
+    endLocation: newFormData.get("endLocation") as string,
+    pickupSlot: newFormData.get(
+      "pickupSlot"
+    ) as FormState["formData"]["pickupSlot"],
     seats: Number(newFormData.get("startLocation") as string),
-    startTime: Number(newFormData.get("startLocation") as string),
+    genderPreference: newFormData.get(
+      "pickupSlot"
+    ) as FormState["formData"]["genderPreference"],
   };
+
+  console.log("::::formData", formData);
 
   const result = formSchema.safeParse(formData);
 
   if (result.error?.errors) {
     return {
       formData,
+      submitted: false,
       errors: result.error?.errors,
     };
   }
 
-  // TODO: Submit the form
+  // TODO: Submit the form to supabase
 
-  return initialState;
+  return {
+    ...initialState,
+    submitted: true,
+  };
 }
