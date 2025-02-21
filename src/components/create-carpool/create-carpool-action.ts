@@ -1,6 +1,6 @@
 "use server";
 
-import { formSchema, type FormState, initialState } from "./formSchema";
+import { formSchema, type FormState, initialState } from "./form-schema";
 
 export async function createCarpool(
   _: FormState,

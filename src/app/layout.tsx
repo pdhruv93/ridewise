@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Navbar } from "@/components/navbar";
-import { MapContainer } from "@/components/maps/MapContainer";
+import { MapContainer } from "@/components/maps/map-container";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Provider>
           <Navbar />
           <MapContainer>{children}</MapContainer>
+          <Toaster />
         </Provider>
       </body>
     </html>

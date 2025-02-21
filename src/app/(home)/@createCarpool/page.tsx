@@ -1,4 +1,4 @@
-import { CreateCarpoolForm } from "@/components/create-carpool/CreateCarpoolForm";
+import { CreateCarpoolForm } from "@/components/create-carpool/create-carpool-form";
 import { Card } from "@chakra-ui/react";
 
 export default function AddCarPool() {
