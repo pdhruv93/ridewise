@@ -20,7 +20,7 @@ export function CreateCarpoolForm() {
 
   return (
     <form action={formAction}>
-      <VStack gap="4" align="flex-start" w="full">
+      <VStack gap="6" align="flex-start" w="full">
         <Field.Root invalid={!!startLocationError}>
           <Field.Label>Start location</Field.Label>
           <AutocompleteInput placeholder="Start location" />
@@ -53,6 +53,8 @@ export function CreateCarpoolForm() {
             placeholder="Extra seats"
             defaultValue={state.formData.seats}
             type="number"
+            max="3"
+            min="1"
             px="2"
           />
 
