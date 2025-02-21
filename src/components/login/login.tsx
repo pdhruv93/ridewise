@@ -23,14 +23,14 @@ export async function Login() {
 
   if (!error && data?.user) {
     return (
-      <MenuRoot positioning={{ placement: "bottom" }}>
+      <MenuRoot positioning={{ placement: "bottom-end" }}>
         <MenuTrigger asChild>
           <Avatar.Root colorPalette="teal" cursor="pointer">
             <Avatar.Fallback />
           </Avatar.Root>
         </MenuTrigger>
 
-        <MenuContent>
+        <MenuContent pos="relative">
           <MenuItem value="my-carpools" p="2" cursor="pointer">
             My Carpools
           </MenuItem>
