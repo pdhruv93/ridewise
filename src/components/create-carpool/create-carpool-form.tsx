@@ -6,6 +6,7 @@ import { PickupSlots } from "./pickup-slots-select";
 import { GenderPreference } from "./gender-preference-select";
 import { useRoute } from "./useRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export function CreateCarpoolForm() {
   const {
@@ -83,16 +84,22 @@ export function CreateCarpoolForm() {
               Preview
             </Button>
 
-            <Button
-              type="submit"
-              variant="solid"
-              colorPalette="teal"
-              loading={isPending}
-              spinnerPlacement="start"
-              px="4"
+            <Tooltip
+              content="No routes found. Did you preview yet?"
+              disabled={!!computedDirections}
             >
-              Submit
-            </Button>
+              <Button
+                type="submit"
+                variant="solid"
+                colorPalette="teal"
+                loading={isPending}
+                spinnerPlacement="start"
+                px="4"
+                disabled={!computedDirections}
+              >
+                Submit
+              </Button>
+            </Tooltip>
           </ButtonGroup>
         </VStack>
       </form>
