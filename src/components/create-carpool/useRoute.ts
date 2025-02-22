@@ -4,12 +4,12 @@ import { toaster } from "@/components/ui/toaster";
 import { createCarpool } from "./create-carpool-action";
 import { initialState } from "./form-schema";
 
-export function useRoute() {
+export function useRoute(
+  onCarpoolCreated?: (route: google.maps.DirectionsResult) => void
+) {
+  const [isRouteGenerated, setIsRouteGenerated] = useState(false);
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
-  const [directions, setDirections] = useState<
-    google.maps.DirectionsResult | undefined
-  >(undefined);
 
   const [formState, formAction, isPending] = useActionState(
     createCarpool,
@@ -40,7 +40,8 @@ export function useRoute() {
         });
 
         if (results.routes.length) {
-          setDirections(results);
+          onCarpoolCreated?.(results);
+          setIsRouteGenerated(true);
         }
       } catch {
         toaster.create({
@@ -53,11 +54,12 @@ export function useRoute() {
 
   return {
     formState,
-    computedDirections: directions,
     startLocationRef,
     endLocationRef,
     calculateRoute,
     formAction,
     isPending,
+    isRouteGenerated,
+    fieldErrors: formState.validationError?.fieldErrors,
   };
 }
