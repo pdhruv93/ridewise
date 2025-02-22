@@ -1,4 +1,4 @@
-import { z, type ZodError } from "zod";
+import { z } from "zod";
 
 export const formSchema = z.object({
   startLocation: z.string(),
@@ -19,7 +19,7 @@ export const formSchema = z.object({
 export type FormState = {
   formData: z.infer<typeof formSchema>;
   submitted: boolean;
-  validationError: ZodError | undefined;
+  validationError: z.inferFlattenedErrors<typeof formSchema> | undefined;
   errorMessage: string | undefined;
 };
 

@@ -25,7 +25,7 @@ export async function createCarpool(
     return {
       formData,
       submitted: false,
-      validationError: result.error,
+      validationError: result.error.flatten(),
       errorMessage: undefined,
     };
   }

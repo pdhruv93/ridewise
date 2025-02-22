@@ -20,7 +20,7 @@ export function CreateCarpoolForm() {
     calculateRoute,
     isPending,
   } = useRoute();
-  const fieldErrors = formState.validationError?.flatten().fieldErrors;
+  const fieldErrors = formState.validationError?.fieldErrors;
 
   useEffect(() => {
     if (formState.submitted && formState.errorMessage) {
