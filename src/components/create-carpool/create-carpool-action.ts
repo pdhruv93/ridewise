@@ -1,28 +1,62 @@
 "use server";
 
+import { createClient } from "@/utils/supabase/server";
 import { formSchema, type FormState, initialState } from "./form-schema";
 
 export async function createCarpool(
-  _: FormState,
+  _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
-    endLocation: newFormData.get("startLocation") as string,
-    seats: Number(newFormData.get("startLocation") as string),
-    startTime: Number(newFormData.get("startLocation") as string),
+    endLocation: newFormData.get("endLocation") as string,
+    pickupSlot: newFormData.get(
+      "pickupSlot"
+    ) as FormState["formData"]["pickupSlot"],
+    seats: Number(newFormData.get("seats") as string),
+    genderPreference: newFormData.get(
+      "genderPreference"
+    ) as FormState["formData"]["genderPreference"],
+    polyline: newFormData.get("polyline") as string,
   };
 
   const result = formSchema.safeParse(formData);
 
-  if (result.error?.errors) {
+  if (result.error) {
     return {
       formData,
-      errors: result.error?.errors,
+      submitted: false,
+      validationError: result.error.flatten(),
+      errorMessage: undefined,
     };
   }
 
-  // TODO: Submit the form
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return initialState;
+  const { error } = await supabase.from("carpool").insert({
+    created_by: user?.id,
+    start_location: formData.startLocation,
+    end_location: formData.endLocation,
+    encoded_polyline: formData.polyline,
+    seats: formData.seats,
+    gender_preference: formData.genderPreference,
+    pickup_slot: formData.pickupSlot,
+  });
+
+  if (error) {
+    return {
+      formData,
+      submitted: true,
+      validationError: undefined,
+      errorMessage: error.message,
+    };
+  }
+
+  return {
+    ...initialState,
+    submitted: true,
+  };
 }

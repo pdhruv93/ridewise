@@ -2,7 +2,7 @@
 
 import React, { PropsWithChildren } from "react";
 import { GoogleMap, type Libraries, LoadScript } from "@react-google-maps/api";
-import { Box, Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const defaultCenter = {
   lat: -3.745,
@@ -11,7 +11,7 @@ const defaultCenter = {
 
 const libraries: Libraries = ["places"];
 
-export function MapContainer({ children }: PropsWithChildren) {
+function MapContainer({ children }: PropsWithChildren) {
   return (
     <Box pos="absolute" left="0" top="0" w="100%" h="100%">
       <LoadScript
@@ -28,22 +28,15 @@ export function MapContainer({ children }: PropsWithChildren) {
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
-            gestureHandling: "none",
+            // gestureHandling: "none",
           }}
           mapContainerStyle={{ width: "100%", height: "100%", zIndex: 0 }}
         >
-          <Container
-            pos="relative"
-            px="20"
-            py="20"
-            w="full"
-            maxW="full"
-            h="full"
-          >
-            {children}
-          </Container>
+          {children}
         </GoogleMap>
       </LoadScript>
     </Box>
   );
 }
+
+export default React.memo(MapContainer);

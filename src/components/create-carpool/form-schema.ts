@@ -1,25 +1,39 @@
-import { z, type ZodIssue } from "zod";
+import { z } from "zod";
 
 export const formSchema = z.object({
-  startLocation: z
-    .string()
-    .min(3, { message: "Activity name should be atleast 3 chars" }),
-  endLocation: z.string().max(100),
-  startTime: z.coerce.number().min(1).max(7),
+  startLocation: z.string(),
+  endLocation: z.string(),
+  pickupSlot: z.enum([
+    "6-8",
+    "8-10",
+    "10-13",
+    "13-16",
+    "16-18",
+    "18-20",
+    "20-6",
+  ]),
   seats: z.coerce.number().min(1).max(3),
+  genderPreference: z.enum(["Male", "Female", "Any"]),
+  polyline: z.string(),
 });
 
 export type FormState = {
   formData: z.infer<typeof formSchema>;
-  errors: ZodIssue[];
+  submitted: boolean;
+  validationError: z.inferFlattenedErrors<typeof formSchema> | undefined;
+  errorMessage: string | undefined;
 };
 
 export const initialState: FormState = {
   formData: {
     startLocation: "",
     endLocation: "",
-    startTime: 2,
+    pickupSlot: "8-10",
     seats: 2,
+    genderPreference: "Any",
+    polyline: "",
   },
-  errors: [],
+  submitted: false,
+  validationError: undefined,
+  errorMessage: undefined,
 };
