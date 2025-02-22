@@ -12,9 +12,9 @@ export async function createCarpool(
     pickupSlot: newFormData.get(
       "pickupSlot"
     ) as FormState["formData"]["pickupSlot"],
-    seats: Number(newFormData.get("startLocation") as string),
+    seats: Number(newFormData.get("seats") as string),
     genderPreference: newFormData.get(
-      "pickupSlot"
+      "genderPreference"
     ) as FormState["formData"]["genderPreference"],
   };
 

@@ -1,7 +1,7 @@
 import { useActionState, useRef, useState } from "react";
 import { createCarpool } from "./create-carpool-action";
 import { initialState } from "./form-schema";
-import { useGoogleMap } from "@react-google-maps/api";
+import { toaster } from "@/components/ui/toaster";
 
 export function useRoute() {
   const startLocationRef = useRef<HTMLInputElement>(null);
@@ -9,7 +9,6 @@ export function useRoute() {
   const [directions, setDirections] = useState<
     google.maps.DirectionsResult | undefined
   >(undefined);
-  const map = useGoogleMap();
 
   const [formState, formAction, isPending] = useActionState(
     createCarpool,
@@ -24,16 +23,22 @@ export function useRoute() {
     const directionService = new google.maps.DirectionsService();
 
     if (startLocationRef.current?.value && endLocationRef.current?.value) {
-      const results = await directionService.route({
-        origin: startLocationRef.current?.value,
-        destination: endLocationRef.current?.value,
-        travelMode: google.maps.TravelMode.DRIVING,
-        provideRouteAlternatives: false,
-      });
+      try {
+        const results = await directionService.route({
+          origin: startLocationRef.current?.value,
+          destination: endLocationRef.current?.value,
+          travelMode: google.maps.TravelMode.DRIVING,
+          provideRouteAlternatives: false,
+        });
 
-      if (results.routes.length) {
-        setDirections(results);
-        map?.setOptions({ gestureHandling: "cooperative" });
+        if (results.routes.length) {
+          setDirections(results);
+        }
+      } catch {
+        toaster.create({
+          title: "No route found",
+          type: "error",
+        });
       }
     }
   };
