@@ -1,11 +1,11 @@
 import {
-  createListCollection,
-  SelectContent,
-  SelectItem,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
-} from "@chakra-ui/react";
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { createListCollection } from "@chakra-ui/react";
 
 const pickupSlots = createListCollection({
   items: [

@@ -1,4 +1,4 @@
-import { z, type ZodIssue } from "zod";
+import { z, type ZodError } from "zod";
 
 export const formSchema = z.object({
   startLocation: z.string(),
@@ -19,7 +19,7 @@ export const formSchema = z.object({
 export type FormState = {
   formData: z.infer<typeof formSchema>;
   submitted: boolean;
-  errors: ZodIssue[];
+  validationError: ZodError | undefined;
   errorMessage: string | undefined;
 };
 
@@ -32,6 +32,6 @@ export const initialState: FormState = {
     genderPreference: "Any",
   },
   submitted: false,
-  errors: [],
+  validationError: undefined,
   errorMessage: undefined,
 };

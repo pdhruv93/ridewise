@@ -1,13 +1,13 @@
+import { createListCollection } from "@chakra-ui/react";
 import {
-  createListCollection,
-  SelectContent,
-  SelectItem,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
-} from "@chakra-ui/react";
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
-const pickupSlots = createListCollection({
+const genderPrefs = createListCollection({
   items: [
     { label: "Male", value: "Male" },
     { label: "Female", value: "Female" },
@@ -22,7 +22,7 @@ interface GenderPreferenceProps {
 export function GenderPreference({ defaultValue }: GenderPreferenceProps) {
   return (
     <SelectRoot
-      collection={pickupSlots}
+      collection={genderPrefs}
       width="full"
       name="genderPreference"
       defaultValue={defaultValue}
@@ -32,9 +32,9 @@ export function GenderPreference({ defaultValue }: GenderPreferenceProps) {
       </SelectTrigger>
 
       <SelectContent>
-        {pickupSlots.items.map((slot) => (
-          <SelectItem item={slot} key={slot.value}>
-            {slot.label}
+        {genderPrefs.items.map((pref) => (
+          <SelectItem item={pref} key={pref.value}>
+            {pref.label}
           </SelectItem>
         ))}
       </SelectContent>

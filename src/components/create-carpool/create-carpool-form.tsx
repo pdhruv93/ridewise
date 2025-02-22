@@ -7,28 +7,20 @@ import { GenderPreference } from "./gender-preference-select";
 import { useRoute } from "./useRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { Tooltip } from "@/components/ui/tooltip";
-import { useActionState, useEffect } from "react";
+import { useEffect } from "react";
 import { toaster } from "@/components/ui/toaster";
-import { createCarpool } from "./create-carpool-action";
-import { initialState } from "./form-schema";
 
 export function CreateCarpoolForm() {
-  const [formState, formAction, isPending] = useActionState(
-    createCarpool,
-    initialState
-  );
-
-  const startLocationError = formState.errors.find((error) =>
-    error.path.includes("startLocation")
-  );
-
   const {
     computedDirections,
     startLocationRef,
     endLocationRef,
-
+    formState,
+    formAction,
     calculateRoute,
+    isPending,
   } = useRoute();
+  const fieldErrors = formState.validationError?.flatten().fieldErrors;
 
   useEffect(() => {
     if (formState.submitted && formState.errorMessage) {
@@ -43,27 +35,31 @@ export function CreateCarpoolForm() {
     <>
       <form action={formAction}>
         <VStack gap="6" align="flex-start" w="full">
-          <Field.Root invalid={!!startLocationError}>
+          <Field.Root invalid={!!fieldErrors?.["startLocation"]}>
             <Field.Label>Start location (A)</Field.Label>
             <AutocompleteInput
               placeholder="Start location"
               ref={startLocationRef}
             />
 
-            <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
+            <Field.ErrorText>
+              {fieldErrors?.["startLocation"]?.[0]}
+            </Field.ErrorText>
           </Field.Root>
 
-          <Field.Root invalid={!!startLocationError}>
+          <Field.Root invalid={!!fieldErrors?.["endLocation"]}>
             <Field.Label>End location (B)</Field.Label>
             <AutocompleteInput
               placeholder="End location"
               ref={endLocationRef}
             />
 
-            <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
+            <Field.ErrorText>
+              {fieldErrors?.["endLocation"]?.[0]}
+            </Field.ErrorText>
           </Field.Root>
 
-          <Field.Root invalid={!!startLocationError}>
+          <Field.Root invalid={!!fieldErrors?.["pickupSlot"]}>
             <Field.Label>Pickup slot</Field.Label>
             <PickupSlots defaultValue={[formState.formData.pickupSlot]} />
 
@@ -71,10 +67,13 @@ export function CreateCarpoolForm() {
               You can discuss flexibility when someone is willing to join this
               carpool
             </Field.HelperText>
-            <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
+
+            <Field.ErrorText>
+              {fieldErrors?.["pickupSlot"]?.[0]}
+            </Field.ErrorText>
           </Field.Root>
 
-          <Field.Root invalid={!!startLocationError}>
+          <Field.Root invalid={!!fieldErrors?.["seats"]}>
             <Field.Label>Extra seats</Field.Label>
             <Input
               name="seats"
@@ -86,16 +85,18 @@ export function CreateCarpoolForm() {
               defaultValue={Number(formState.formData.seats)}
             />
 
-            <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
+            <Field.ErrorText>{fieldErrors?.["seats"]?.[0]}</Field.ErrorText>
           </Field.Root>
 
-          <Field.Root invalid={!!startLocationError}>
+          <Field.Root invalid={!!fieldErrors?.["genderPreference"]}>
             <Field.Label>Gender Preference</Field.Label>
             <GenderPreference
               defaultValue={[formState.formData.genderPreference]}
             />
 
-            <Field.ErrorText>{startLocationError?.message}</Field.ErrorText>
+            <Field.ErrorText>
+              {fieldErrors?.["genderPreference"]?.[0]}
+            </Field.ErrorText>
           </Field.Root>
 
           <ButtonGroup gap="4">

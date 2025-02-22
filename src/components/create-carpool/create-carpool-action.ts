@@ -7,7 +7,6 @@ export async function createCarpool(
   _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {
-  console.log("_test____", _test);
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,
@@ -20,15 +19,13 @@ export async function createCarpool(
     ) as FormState["formData"]["genderPreference"],
   };
 
-  console.log("::::formData", formData);
-
   const result = formSchema.safeParse(formData);
 
-  if (result.error?.errors) {
+  if (result.error) {
     return {
       formData,
       submitted: false,
-      errors: result.error?.errors,
+      validationError: result.error,
       errorMessage: undefined,
     };
   }
@@ -52,7 +49,7 @@ export async function createCarpool(
     return {
       formData,
       submitted: true,
-      errors: [],
+      validationError: undefined,
       errorMessage: error.message,
     };
   }
