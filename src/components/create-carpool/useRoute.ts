@@ -28,6 +28,7 @@ export function useRoute() {
         origin: startLocationRef.current?.value,
         destination: endLocationRef.current?.value,
         travelMode: google.maps.TravelMode.DRIVING,
+        provideRouteAlternatives: false,
       });
 
       if (results.routes.length) {
