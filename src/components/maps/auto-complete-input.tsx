@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Input } from "@chakra-ui/react";
 import { Autocomplete } from "@react-google-maps/api";
 import { RefObject } from "react";
