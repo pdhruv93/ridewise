@@ -1,14 +1,11 @@
 "use client";
 
-import { Button, Input, VStack, Field, ButtonGroup } from "@chakra-ui/react";
+import { Button, Input, VStack, Field } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { PickupSlots } from "./pickup-slots-select";
 import { GenderPreference } from "./gender-preference-select";
 import { useRoute } from "./useRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useEffect } from "react";
-import { toaster } from "@/components/ui/toaster";
 
 export function CreateCarpoolForm() {
   const {
@@ -22,14 +19,7 @@ export function CreateCarpoolForm() {
   } = useRoute();
   const fieldErrors = formState.validationError?.fieldErrors;
 
-  useEffect(() => {
-    if (formState.submitted && formState.errorMessage) {
-      toaster.create({
-        title: formState.errorMessage,
-        type: "error",
-      });
-    }
-  }, [formState.submitted, formState.errorMessage]);
+  console.log("::::", computedDirections);
 
   return (
     <>
@@ -40,6 +30,7 @@ export function CreateCarpoolForm() {
             <AutocompleteInput
               placeholder="Start location"
               ref={startLocationRef}
+              name="startLocation"
             />
 
             <Field.ErrorText>
@@ -52,6 +43,7 @@ export function CreateCarpoolForm() {
             <AutocompleteInput
               placeholder="End location"
               ref={endLocationRef}
+              name="endLocation"
             />
 
             <Field.ErrorText>
@@ -99,28 +91,17 @@ export function CreateCarpoolForm() {
             </Field.ErrorText>
           </Field.Root>
 
-          <ButtonGroup gap="4">
-            <Button px="4" onClick={calculateRoute}>
-              Preview
-            </Button>
-
-            <Tooltip
-              content="No routes found. Did you preview yet?"
-              disabled={!!computedDirections}
-            >
-              <Button
-                type="submit"
-                variant="solid"
-                colorPalette="teal"
-                loading={isPending}
-                spinnerPlacement="start"
-                px="4"
-                disabled={!computedDirections}
-              >
-                Submit
-              </Button>
-            </Tooltip>
-          </ButtonGroup>
+          <Button
+            type={computedDirections ? "submit" : "button"}
+            variant="solid"
+            colorPalette={computedDirections ? "teal" : "black"}
+            loading={isPending}
+            spinnerPlacement="start"
+            px="4"
+            onClick={computedDirections ? undefined : calculateRoute}
+          >
+            {computedDirections ? "Submit" : "Preview"}
+          </Button>
         </VStack>
       </form>
 

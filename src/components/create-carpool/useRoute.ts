@@ -1,4 +1,4 @@
-import { useActionState, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 import { toaster } from "@/components/ui/toaster";
 import { createCarpool } from "./create-carpool-action";
@@ -15,6 +15,17 @@ export function useRoute() {
     createCarpool,
     initialState
   );
+
+  useEffect(() => {
+    if (formState.submitted) {
+      toaster.create({
+        title: formState.errorMessage
+          ? formState.errorMessage
+          : "Carpool created",
+        type: formState.errorMessage ? "error" : "success",
+      });
+    }
+  }, [formState.submitted, formState.errorMessage]);
 
   const calculateRoute = async () => {
     const directionService = new google.maps.DirectionsService();
