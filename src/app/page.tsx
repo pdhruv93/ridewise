@@ -3,8 +3,8 @@ import { Card } from "@chakra-ui/react";
 
 export default function AddCarPool() {
   return (
-    <Card.Root w="md">
-      <Card.Body p="6">
+    <Card.Root w="sm">
+      <Card.Body p="4">
         <CreateCarpoolForm />
       </Card.Body>
     </Card.Root>
