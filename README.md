@@ -16,6 +16,12 @@ ridewise is a simple web app that lets users create and join a carpool.
 
 I first tried with Google Firestore, its a good solution but the since its a No-SQL approach, creating references, performing joins was quite difficult. With Supabase its a Postgres DB, so things are sorted.
 
+## Future Improvements
+
+### Limit the amount of creations
+
+In order to avoid spam, the user would be allowed to create a new carpool every 30min. We already have the Postgres trigger which updates last creation time of user in the Users table. The frontend side logic needs to be created.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
