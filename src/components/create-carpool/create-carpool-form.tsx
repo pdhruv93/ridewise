@@ -2,8 +2,8 @@
 
 import { Button, Input, VStack, Field, ButtonGroup } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
-import { PickupSlots } from "./pickup-slots";
-import { GenderPreference } from "./gender-preference";
+import { PickupSlots } from "./pickup-slots-select";
+import { GenderPreference } from "./gender-preference-select";
 import { useRoute } from "./useRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
 
