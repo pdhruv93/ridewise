@@ -1,6 +1,5 @@
-import { useActionState, useRef, useState } from "react";
-import { createCarpool } from "./create-carpool-action";
-import { initialState } from "./form-schema";
+import { useRef, useState } from "react";
+
 import { toaster } from "@/components/ui/toaster";
 
 export function useRoute() {
@@ -9,15 +8,6 @@ export function useRoute() {
   const [directions, setDirections] = useState<
     google.maps.DirectionsResult | undefined
   >(undefined);
-
-  const [formState, formAction, isPending] = useActionState(
-    createCarpool,
-    initialState
-  );
-
-  const startLocationError = formState.errors.find((error) =>
-    error.path.includes("startLocation")
-  );
 
   const calculateRoute = async () => {
     const directionService = new google.maps.DirectionsService();
@@ -47,10 +37,6 @@ export function useRoute() {
     computedDirections: directions,
     startLocationRef,
     endLocationRef,
-    formAction,
-    isPending,
-    formState,
     calculateRoute,
-    startLocationError,
   };
 }

@@ -20,6 +20,7 @@ export default function RootLayout({
       <body>
         <Provider>
           <Navbar />
+
           <MapContainer>
             <Box px="20" py="20">
               {children}

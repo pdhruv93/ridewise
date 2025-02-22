@@ -1,11 +1,13 @@
 "use server";
 
+import { createClient } from "@/utils/supabase/server";
 import { formSchema, type FormState, initialState } from "./form-schema";
 
 export async function createCarpool(
-  _: FormState,
+  _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {
+  console.log("_test____", _test);
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,
@@ -27,10 +29,33 @@ export async function createCarpool(
       formData,
       submitted: false,
       errors: result.error?.errors,
+      errorMessage: undefined,
     };
   }
 
-  // TODO: Submit the form to supabase
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { error } = await supabase.from("carpool").insert({
+    created_by: user?.id,
+    start_location: formData.startLocation,
+    end_location: formData.endLocation,
+    encoded_polyline: null,
+    seats: formData.seats,
+    gender_preference: formData.genderPreference,
+    pickup_slot: formData.pickupSlot,
+  });
+
+  if (error) {
+    return {
+      formData,
+      submitted: true,
+      errors: [],
+      errorMessage: error.message,
+    };
+  }
 
   return {
     ...initialState,

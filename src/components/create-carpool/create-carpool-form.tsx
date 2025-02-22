@@ -7,18 +7,37 @@ import { GenderPreference } from "./gender-preference-select";
 import { useRoute } from "./useRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useActionState, useEffect } from "react";
+import { toaster } from "@/components/ui/toaster";
+import { createCarpool } from "./create-carpool-action";
+import { initialState } from "./form-schema";
 
 export function CreateCarpoolForm() {
+  const [formState, formAction, isPending] = useActionState(
+    createCarpool,
+    initialState
+  );
+
+  const startLocationError = formState.errors.find((error) =>
+    error.path.includes("startLocation")
+  );
+
   const {
     computedDirections,
     startLocationRef,
     endLocationRef,
-    formAction,
-    isPending,
-    formState,
-    startLocationError,
+
     calculateRoute,
   } = useRoute();
+
+  useEffect(() => {
+    if (formState.submitted && formState.errorMessage) {
+      toaster.create({
+        title: formState.errorMessage,
+        type: "error",
+      });
+    }
+  }, [formState.submitted, formState.errorMessage]);
 
   return (
     <>

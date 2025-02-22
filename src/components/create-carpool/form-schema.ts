@@ -20,6 +20,7 @@ export type FormState = {
   formData: z.infer<typeof formSchema>;
   submitted: boolean;
   errors: ZodIssue[];
+  errorMessage: string | undefined;
 };
 
 export const initialState: FormState = {
@@ -32,4 +33,5 @@ export const initialState: FormState = {
   },
   submitted: false,
   errors: [],
+  errorMessage: undefined,
 };
