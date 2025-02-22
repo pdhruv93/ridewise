@@ -22,6 +22,7 @@ export function CreateCarpoolForm({
     isPending,
     isRouteGenerated,
     fieldErrors,
+    route,
   } = useRoute(onCarpoolCreated);
 
   return (
@@ -88,6 +89,8 @@ export function CreateCarpoolForm({
             {fieldErrors?.["genderPreference"]?.[0]}
           </Field.ErrorText>
         </Field.Root>
+
+        <Input hidden value={route?.routes.at(0)?.overview_polyline} />
 
         <Button
           type={isRouteGenerated ? "submit" : "button"}

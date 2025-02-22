@@ -14,6 +14,7 @@ export const formSchema = z.object({
   ]),
   seats: z.coerce.number().min(1).max(3),
   genderPreference: z.enum(["Male", "Female", "Any"]),
+  polyline: z.string().nullable(),
 });
 
 export type FormState = {
@@ -30,6 +31,7 @@ export const initialState: FormState = {
     pickupSlot: "8-10",
     seats: 2,
     genderPreference: "Any",
+    polyline: null,
   },
   submitted: false,
   validationError: undefined,

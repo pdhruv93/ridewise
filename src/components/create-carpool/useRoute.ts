@@ -7,7 +7,9 @@ import { initialState } from "./form-schema";
 export function useRoute(
   onCarpoolCreated?: (route: google.maps.DirectionsResult) => void
 ) {
-  const [isRouteGenerated, setIsRouteGenerated] = useState(false);
+  const [route, setRoute] = useState<google.maps.DirectionsResult | undefined>(
+    undefined
+  );
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
 
@@ -41,7 +43,7 @@ export function useRoute(
 
         if (results.routes.length) {
           onCarpoolCreated?.(results);
-          setIsRouteGenerated(true);
+          setRoute(results);
         }
       } catch {
         toaster.create({
@@ -59,7 +61,8 @@ export function useRoute(
     calculateRoute,
     formAction,
     isPending,
-    isRouteGenerated,
+    isRouteGenerated: !!route,
+    route,
     fieldErrors: formState.validationError?.fieldErrors,
   };
 }

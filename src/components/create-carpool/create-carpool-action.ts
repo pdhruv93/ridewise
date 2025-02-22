@@ -17,6 +17,7 @@ export async function createCarpool(
     genderPreference: newFormData.get(
       "genderPreference"
     ) as FormState["formData"]["genderPreference"],
+    polyline: newFormData.get("polyline") as string,
   };
 
   const result = formSchema.safeParse(formData);
@@ -39,7 +40,7 @@ export async function createCarpool(
     created_by: user?.id,
     start_location: formData.startLocation,
     end_location: formData.endLocation,
-    encoded_polyline: null,
+    encoded_polyline: formData.polyline,
     seats: formData.seats,
     gender_preference: formData.genderPreference,
     pickup_slot: formData.pickupSlot,
