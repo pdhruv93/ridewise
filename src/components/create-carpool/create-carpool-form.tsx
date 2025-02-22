@@ -90,7 +90,11 @@ export function CreateCarpoolForm({
           </Field.ErrorText>
         </Field.Root>
 
-        <Input hidden value={route?.routes.at(0)?.overview_polyline} />
+        <Input
+          hidden
+          name="polyline"
+          defaultValue={route?.routes.at(0)?.overview_polyline ?? ""}
+        />
 
         <Button
           type={isRouteGenerated ? "submit" : "button"}
