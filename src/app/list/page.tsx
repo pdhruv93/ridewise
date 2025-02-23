@@ -1,11 +1,10 @@
-import { CreateCarpoolForm } from "@/components/create-carpool/create-carpool-form";
-import { Card } from "@chakra-ui/react";
-import { DirectionsRenderer } from "@react-google-maps/api";
+import SearchBar from "@/components/carpools-list/search-bar";
+import { VStack } from "@chakra-ui/react";
 
 export default function CarpoolsList() {
   return (
-    <Card.Root w="sm">
-      <Card.Body p="4"></Card.Body>
-    </Card.Root>
+    <VStack align="start" w="full">
+      <SearchBar placeholder="Start typing some location..." />
+    </VStack>
   );
 }
