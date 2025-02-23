@@ -1,7 +1,7 @@
 "use client";
 
 import { CreateCarpoolForm } from "@/components/create-carpool/create-carpool-form";
-import { Card } from "@chakra-ui/react";
+import { Heading, VStack } from "@chakra-ui/react";
 import { DirectionsRenderer, useGoogleMap } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 
@@ -24,11 +24,11 @@ export default function CreateCarpoolCard() {
   }, []);
 
   return (
-    <Card.Root w="sm">
-      <Card.Body p="4">
-        <CreateCarpoolForm onCarpoolCreated={setRoute} />
-        <DirectionsRenderer directions={route} />
-      </Card.Body>
-    </Card.Root>
+    <VStack align="start" gap="6">
+      <Heading>Create new carpool</Heading>
+      <CreateCarpoolForm onCarpoolCreated={setRoute} />
+
+      <DirectionsRenderer directions={route} />
+    </VStack>
   );
 }

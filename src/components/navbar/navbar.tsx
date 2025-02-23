@@ -1,7 +1,8 @@
-import { Container, Heading } from "@chakra-ui/react";
+import { Button, Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { Login } from "@/components/login";
 import { Suspense } from "react";
+import { CiSearch } from "react-icons/ci";
 
 export function Navbar() {
   return (
@@ -21,9 +22,17 @@ export function Navbar() {
         </Heading>
       </Link>
 
-      <Suspense>
-        <Login />
-      </Suspense>
+      <HStack gap="4">
+        <Button colorPalette="teal" variant="outline" asChild>
+          <Link href="/list">
+            Find carpools <CiSearch />
+          </Link>
+        </Button>
+
+        <Suspense>
+          <Login />
+        </Suspense>
+      </HStack>
     </Container>
   );
 }
