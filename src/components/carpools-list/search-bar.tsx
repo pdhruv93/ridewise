@@ -3,8 +3,7 @@
 import { Input } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import { InputGroup } from "../ui/input-group";
-import { useSearchParams, usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchBar({ placeholder }: { placeholder: string }) {
