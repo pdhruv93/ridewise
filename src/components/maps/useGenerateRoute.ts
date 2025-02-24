@@ -8,7 +8,8 @@ export function useGenerateRoute() {
 
   const generateRoute = async (
     startLocation: string | undefined,
-    endLocation: string | undefined
+    endLocation: string | undefined,
+    waypoints?: google.maps.DirectionsWaypoint[]
   ) => {
     if (!startLocation || !endLocation) {
       return;
@@ -22,6 +23,8 @@ export function useGenerateRoute() {
         destination: endLocation,
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: false,
+        waypoints,
+        optimizeWaypoints: true,
       });
 
       if (results.routes.length) {

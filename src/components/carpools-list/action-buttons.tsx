@@ -18,6 +18,10 @@ export function ActionButtons({
   requestEndLocation,
 }: ActionButtonsProps) {
   const { route: carpoolRoute, generateRoute } = useGenerateRoute();
+  const wayPoints: google.maps.DirectionsWaypoint[] = [
+    { location: requestStartLocation, stopover: true },
+    { location: requestEndLocation, stopover: true },
+  ];
 
   if (!carpoolRoute) {
     return (
@@ -25,7 +29,9 @@ export function ActionButtons({
         variant="solid"
         colorPalette="black"
         px="4"
-        onClick={() => generateRoute(carpoolStartLocation, carpoolEndLocation)}
+        onClick={() =>
+          generateRoute(carpoolStartLocation, carpoolEndLocation, wayPoints)
+        }
       >
         Preview
       </Button>
