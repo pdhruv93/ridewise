@@ -13,7 +13,7 @@ export function useRoute(
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
 
-  const [formState, formAction, isPending] = useActionState(
+  const [formState, createCarPool, isPending] = useActionState(
     createCarpool,
     initialState
   );
@@ -28,10 +28,6 @@ export function useRoute(
       });
     }
   }, [formState.submitted, formState.errorMessage]);
-
-  const createCarPool = async (formData) => {
-    formAction(formData, route?.routes.at(0)?.overview_polyline);
-  };
 
   const calculateRoute = async () => {
     const directionService = new google.maps.DirectionsService();
@@ -59,6 +55,7 @@ export function useRoute(
   };
 
   return {
+    route,
     startLocationRef,
     endLocationRef,
     isPending,

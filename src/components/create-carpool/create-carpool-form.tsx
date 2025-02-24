@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Field, VStack } from "@chakra-ui/react";
+import { Button, Field, Input, VStack } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { useRoute } from "./useRoute";
 
@@ -12,6 +12,7 @@ export function CreateCarpoolForm({
   onCarpoolCreated,
 }: CreateCarpoolFormProps) {
   const {
+    route,
     startLocationRef,
     endLocationRef,
     createCarPool,
@@ -47,6 +48,12 @@ export function CreateCarpoolForm({
 
           <Field.ErrorText>{fieldErrors?.["endLocation"]?.[0]}</Field.ErrorText>
         </Field.Root>
+
+        <Input
+          hidden
+          name="polyline"
+          defaultValue={route?.routes.at(0)?.overview_polyline ?? ""}
+        />
 
         <Button
           type={isRouteGenerated ? "submit" : "button"}
