@@ -1,7 +1,15 @@
 import { toaster } from "@/components/ui/toaster";
+import { useState } from "react";
 
 export function useGenerateRoute() {
-  const generateRoute = async (startLocation: string, endLocation: string) => {
+  const [route, setRoute] = useState<google.maps.DirectionsResult | undefined>(
+    undefined
+  );
+
+  const generateRoute = async (
+    startLocation: string | undefined,
+    endLocation: string | undefined
+  ) => {
     if (!startLocation || !endLocation) {
       return;
     }
@@ -17,7 +25,7 @@ export function useGenerateRoute() {
       });
 
       if (results.routes.length) {
-        return results;
+        setRoute(results);
       }
     } catch {
       toaster.create({
@@ -27,5 +35,5 @@ export function useGenerateRoute() {
     }
   };
 
-  return { generateRoute };
+  return { route, generateRoute };
 }
