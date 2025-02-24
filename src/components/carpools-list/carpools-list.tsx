@@ -2,26 +2,19 @@ import { redirect } from "next/navigation";
 import { toaster } from "@/components/ui/toaster";
 import { createClient } from "@/utils/supabase/server";
 import { Tables } from "@/utils/supabase/database.types";
-import { VStack, Card, HStack, Button } from "@chakra-ui/react";
+import { VStack, Card, HStack, Button, Heading } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
 import { PreviewRoute } from "@/components/maps/preview-route";
 
-export async function CarpoolsList(props: {
-  searchParams?: Promise<{
-    startLocation?: string;
-    endLocation?: string;
-  }>;
-}) {
-  const searchParams = await props.searchParams;
-  const startLocation = searchParams?.startLocation;
-  const endLocation = searchParams?.endLocation;
+interface CarpoolsListProps {
+  startLocation: string;
+  endLocation: string;
+}
 
-  if (!startLocation || !endLocation) {
-    console.log(startLocation, endLocation);
-    // TODO: Generate toast notification
-    redirect("/");
-  }
-
+export async function CarpoolsList({
+  startLocation,
+  endLocation,
+}: CarpoolsListProps) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -49,7 +42,10 @@ export async function CarpoolsList(props: {
       overflowY="scroll"
       scrollbar="hidden"
       scrollBehavior="smooth"
+      align="start"
     >
+      <Heading>Preview a carpool</Heading>
+
       {(data as Tables<"carpools">[])?.map((carpool, index) => (
         <Card.Root
           key={`carpool-${index}`}
