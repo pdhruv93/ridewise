@@ -4,12 +4,14 @@ import { RefObject } from "react";
 
 interface AutocompleteInputProps {
   placeholder?: string;
+  defaultValue?: string;
   name: string;
   ref: RefObject<HTMLInputElement | null>;
 }
 
 export function AutocompleteInput({
   placeholder,
+  defaultValue,
   ref,
   name,
 }: AutocompleteInputProps) {
@@ -19,6 +21,7 @@ export function AutocompleteInput({
         <Input
           ref={ref}
           placeholder={placeholder}
+          defaultValue={defaultValue}
           name={name}
           maxW="full"
           w="full"

@@ -1,3 +1,3 @@
-export default function CarpoolsList() {
-  return <span>CarpoolsList</span>;
+export default function Page() {
+  return <>This is list view</>;
 }

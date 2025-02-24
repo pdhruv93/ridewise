@@ -1,6 +1,6 @@
-import { Container, Heading } from "@chakra-ui/react";
+import { Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
-import { Login } from "@/components/login";
+import { Login } from "@/components/login/login";
 import { Suspense } from "react";
 
 export function Navbar() {
@@ -21,9 +21,11 @@ export function Navbar() {
         </Heading>
       </Link>
 
-      <Suspense>
-        <Login />
-      </Suspense>
+      <HStack gap="4">
+        <Suspense>
+          <Login />
+        </Suspense>
+      </HStack>
     </Container>
   );
 }

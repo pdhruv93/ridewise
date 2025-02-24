@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
-import { MenuItem } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
 export function Logout() {
@@ -10,19 +10,13 @@ export function Logout() {
 
   const onLogoutHandle = () => {
     supabase.auth.signOut();
+    router.replace("/");
     router.refresh();
   };
 
   return (
-    <MenuItem
-      value="signout"
-      color="fg.error"
-      cursor="pointer"
-      _hover={{ bg: "bg.error", color: "fg.error" }}
-      p="2"
-      onClick={onLogoutHandle}
-    >
+    <Button variant="outline" color="fg.error" px="4" onClick={onLogoutHandle}>
       Signout
-    </MenuItem>
+    </Button>
   );
 }
