@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen-types": "npx supabase gen types typescript --project-id pqaqphvopxjaefmudnar --schema public > database.types.ts"
+    "gen-types": "npx supabase gen types typescript --project-id pqaqphvopxjaefmudnar --schema public > src/utils/supabase/database.types.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.8.0",

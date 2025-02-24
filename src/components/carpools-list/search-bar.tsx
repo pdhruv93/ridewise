@@ -29,6 +29,7 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
         placeholder={placeholder}
         defaultValue={searchParams.get("query")?.toString()}
         onChange={(e) => handleSearch(e.target.value)}
+        size="lg"
       />
     </InputGroup>
   );

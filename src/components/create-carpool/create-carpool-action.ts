@@ -36,7 +36,7 @@ export async function createCarpool(
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { error } = await supabase.from("carpool").insert({
+  const { error } = await supabase.from("carpools").insert({
     created_by: user?.id,
     start_location: formData.startLocation,
     end_location: formData.endLocation,

@@ -2,7 +2,6 @@ import {
   Avatar,
   Button,
   MenuContent,
-  MenuItem,
   MenuRoot,
   MenuTrigger,
 } from "@chakra-ui/react";
@@ -30,11 +29,7 @@ export async function Login() {
           </Avatar.Root>
         </MenuTrigger>
 
-        <MenuContent pos="relative">
-          <MenuItem value="my-carpools" p="2" cursor="pointer">
-            My Carpools
-          </MenuItem>
-
+        <MenuContent>
           <Logout />
         </MenuContent>
       </MenuRoot>
