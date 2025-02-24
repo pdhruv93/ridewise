@@ -63,12 +63,12 @@ export async function CarpoolsList({
                   <VStack w="full" align="start">
                     <HStack>
                       <MdLocationOn />
-                      (A) {carpool.start_location}
+                      {carpool.start_location}
                     </HStack>
 
                     <HStack>
                       <MdLocationOn />
-                      (B) {carpool.end_location}
+                      {carpool.end_location}
                     </HStack>
                   </VStack>
                 </HStack>

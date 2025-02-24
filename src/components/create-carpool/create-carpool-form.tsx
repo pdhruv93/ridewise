@@ -13,7 +13,7 @@ export function CreateCarpoolForm() {
     <form action={createCarPool} style={{ width: "100%" }}>
       <VStack gap="6" align="start" w="full">
         <Field.Root invalid={!!fieldErrors?.["startLocation"]}>
-          <Field.Label>Start location (A)</Field.Label>
+          <Field.Label>Start location</Field.Label>
           <AutocompleteInput
             placeholder="Start location"
             ref={startLocationRef}
@@ -26,7 +26,7 @@ export function CreateCarpoolForm() {
         </Field.Root>
 
         <Field.Root invalid={!!fieldErrors?.["endLocation"]}>
-          <Field.Label>End location (B)</Field.Label>
+          <Field.Label>End location</Field.Label>
           <AutocompleteInput
             placeholder="End location"
             ref={endLocationRef}
