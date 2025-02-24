@@ -3,6 +3,7 @@
 import { PreviewRoute } from "@/components/maps/preview-route";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { RefObject, useState } from "react";
+import NextLink from "next/link";
 
 interface ActionButtonsProps {
   startLocation: RefObject<HTMLInputElement | null>;
@@ -47,8 +48,13 @@ export function ActionButtons({
         colorPalette="teal"
         px="4"
         value="request"
+        asChild
       >
-        Request carpool
+        <NextLink
+          href={`/list?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
+        >
+          View carpools
+        </NextLink>
       </Button>
     </ButtonGroup>
   );
