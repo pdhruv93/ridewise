@@ -14,7 +14,7 @@ export function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
       border="xs"
       borderColor="gray.700"
       p="2"
-      w="sm"
+      w="full"
       boxShadow="lg"
     >
       <Card.Header p="0">

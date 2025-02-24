@@ -28,7 +28,13 @@ export default async function CarpoolsListCard(props: {
   });
 
   return (
-    <VStack gap="4" maxH="50vh" overflowY="scroll">
+    <VStack
+      gap="4"
+      maxH="50vh"
+      overflowY="scroll"
+      scrollbar="hidden"
+      scrollBehavior="smooth"
+    >
       {(data as Tables<"carpools">[])?.map((carpool, index) => (
         <CarpoolDetails key={`carpool-${index}`} carpool={carpool} />
       ))}
