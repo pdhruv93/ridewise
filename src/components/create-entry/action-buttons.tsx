@@ -1,3 +1,5 @@
+"use client";
+
 import { PreviewRoute } from "@/components/maps/preview-route";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useState } from "react";
