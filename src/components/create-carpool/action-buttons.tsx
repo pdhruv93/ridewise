@@ -40,13 +40,7 @@ export function ActionButtons({
       <DirectionsRenderer directions={route} />
 
       <ButtonGroup>
-        <Button
-          type="submit"
-          variant="solid"
-          colorPalette="teal"
-          px="4"
-          value="create"
-        >
+        <Button type="submit" variant="solid" colorPalette="teal" px="4">
           Create new carpool
         </Button>
 

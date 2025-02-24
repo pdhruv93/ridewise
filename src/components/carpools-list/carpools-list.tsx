@@ -2,9 +2,9 @@ import { redirect } from "next/navigation";
 import { toaster } from "@/components/ui/toaster";
 import { createClient } from "@/utils/supabase/server";
 import { Tables } from "@/utils/supabase/database.types";
-import { VStack, Card, HStack, Button, Heading } from "@chakra-ui/react";
+import { VStack, Card, HStack, Heading } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
-import { PreviewRoute } from "@/components/maps/preview-route";
+import { ActionButtons } from "./action-buttons";
 
 interface CarpoolsListProps {
   startLocation: string;
@@ -75,18 +75,10 @@ export async function CarpoolsList({
           </Card.Header>
 
           <Card.Footer p="0" py="4">
-            <PreviewRoute
-              startLocation={carpool.start_location}
-              endLocation={carpool.end_location}
-            >
-              <Button size="sm" variant="outline" borderColor="gray.700">
-                Preview
-              </Button>
-            </PreviewRoute>
-
-            <Button size="sm" variant="solid" colorPalette="teal">
-              Submit Request
-            </Button>
+            <ActionButtons
+              startLocation={startLocation}
+              endLocation={endLocation}
+            />
           </Card.Footer>
         </Card.Root>
       ))}
