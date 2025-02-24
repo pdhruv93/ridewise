@@ -6,7 +6,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <Card.Root w="sm">
+    <Card.Root w="full">
       <Card.Body p="4">{children}</Card.Body>
     </Card.Root>
   );

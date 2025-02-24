@@ -29,6 +29,10 @@ export function useRoute(
     }
   }, [formState.submitted, formState.errorMessage]);
 
+  const createCarPool = async (formData) => {
+    formAction(formData, route?.routes.at(0)?.overview_polyline);
+  };
+
   const calculateRoute = async () => {
     const directionService = new google.maps.DirectionsService();
 
@@ -55,14 +59,12 @@ export function useRoute(
   };
 
   return {
-    formState,
     startLocationRef,
     endLocationRef,
-    calculateRoute,
-    formAction,
     isPending,
     isRouteGenerated: !!route,
-    route,
     fieldErrors: formState.validationError?.fieldErrors,
+    calculateRoute,
+    createCarPool,
   };
 }

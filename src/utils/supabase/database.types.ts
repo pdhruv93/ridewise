@@ -12,24 +12,30 @@ export type Database = {
       carpool_requests: {
         Row: {
           carpool_id: string | null
+          end_location: string | null
           is_waiting: boolean | null
-          request_id: string | null
+          request_id: string
           requested_at: string
           requested_by: string | null
+          start_location: string | null
         }
         Insert: {
           carpool_id?: string | null
+          end_location?: string | null
           is_waiting?: boolean | null
-          request_id?: string | null
+          request_id?: string
           requested_at?: string
           requested_by?: string | null
+          start_location?: string | null
         }
         Update: {
           carpool_id?: string | null
+          end_location?: string | null
           is_waiting?: boolean | null
-          request_id?: string | null
+          request_id?: string
           requested_at?: string
           requested_by?: string | null
+          start_location?: string | null
         }
         Relationships: [
           {
@@ -46,43 +52,28 @@ export type Database = {
           carpool_id: string
           created_at: string
           created_by: string | null
-          distance: number | null
           encoded_polyline: string | null
           end_location: string | null
-          gender_preference: string | null
-          is_fully_booked: boolean | null
-          pickup_slot: string | null
-          seats: number | null
+          is_open: boolean | null
           start_location: string | null
-          time_min: number | null
         }
         Insert: {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
-          distance?: number | null
           encoded_polyline?: string | null
           end_location?: string | null
-          gender_preference?: string | null
-          is_fully_booked?: boolean | null
-          pickup_slot?: string | null
-          seats?: number | null
+          is_open?: boolean | null
           start_location?: string | null
-          time_min?: number | null
         }
         Update: {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
-          distance?: number | null
           encoded_polyline?: string | null
           end_location?: string | null
-          gender_preference?: string | null
-          is_fully_booked?: boolean | null
-          pickup_slot?: string | null
-          seats?: number | null
+          is_open?: boolean | null
           start_location?: string | null
-          time_min?: number | null
         }
         Relationships: []
       }
