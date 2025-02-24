@@ -1,15 +1,15 @@
 import { useActionState, useEffect, useRef } from "react";
 
 import { toaster } from "@/components/ui/toaster";
-import { createEntry } from "./create-entry-action";
+import { createCarpool } from "./create-carpool-action";
 import { initialState } from "./form-schema";
 
-export function useCreateEntry() {
+export function useCreateCarpool() {
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
 
   const [formState, createCarPool, isPending] = useActionState(
-    createEntry,
+    createCarpool,
     initialState
   );
 

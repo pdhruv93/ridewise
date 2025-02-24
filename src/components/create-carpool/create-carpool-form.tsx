@@ -2,12 +2,12 @@
 
 import { Field, VStack } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
-import { useCreateEntry } from "./useCreateEntry";
+import { useCreateCarpool } from "./useCreateCarpool";
 import { ActionButtons } from "./action-buttons";
 
-export function CreateEntryForm() {
+export function CreateCarpoolForm() {
   const { startLocationRef, endLocationRef, createCarPool, fieldErrors } =
-    useCreateEntry();
+    useCreateCarpool();
 
   return (
     <form action={createCarPool} style={{ width: "100%" }}>

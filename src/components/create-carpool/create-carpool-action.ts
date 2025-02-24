@@ -3,12 +3,10 @@
 import { createClient } from "@/utils/supabase/server";
 import { formSchema, type FormState, initialState } from "./form-schema";
 
-export async function createEntry(
+export async function createCarpool(
   _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {
-  console.log(":::", newFormData);
-
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,
