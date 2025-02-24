@@ -2,11 +2,11 @@
 
 import { PreviewRoute } from "@/components/maps/preview-route";
 import { Button, ButtonGroup } from "@chakra-ui/react";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 
 interface ActionButtonsProps {
-  startLocation: string | undefined | null;
-  endLocation: string | undefined | null;
+  startLocation: RefObject<HTMLInputElement | null>;
+  endLocation: RefObject<HTMLInputElement | null>;
 }
 
 export function ActionButtons({

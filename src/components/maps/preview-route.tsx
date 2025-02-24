@@ -2,12 +2,12 @@
 
 import { Box } from "@chakra-ui/react";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, RefObject, useState } from "react";
 import { toaster } from "@/components/ui/toaster";
 
 interface PreviewRouteProps {
-  startLocation: string | null | undefined;
-  endLocation: string | null | undefined;
+  startLocation: string | RefObject<HTMLInputElement | null>;
+  endLocation: string | RefObject<HTMLInputElement | null>;
   onRouteGenerated?: (route: google.maps.DirectionsResult) => void;
 }
 
@@ -22,7 +22,16 @@ export function PreviewRoute({
   );
 
   const generateRoute = async () => {
-    if (!startLocation || !endLocation) {
+    const startLoc =
+      typeof startLocation == "string"
+        ? startLocation
+        : startLocation?.current?.value;
+    const endLoc =
+      typeof endLocation == "string"
+        ? endLocation
+        : endLocation?.current?.value;
+
+    if (!startLoc || !endLoc) {
       return;
     }
 
@@ -30,14 +39,16 @@ export function PreviewRoute({
       const directionService = new google.maps.DirectionsService();
 
       const results = await directionService.route({
-        origin: startLocation,
-        destination: endLocation,
+        origin: startLoc,
+        destination: endLoc,
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: false,
       });
 
       if (results.routes.length) {
         onRouteGenerated?.(results);
+
+        console.log(":::", results);
         setRoute(results);
       }
     } catch {

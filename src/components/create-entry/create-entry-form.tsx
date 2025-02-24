@@ -37,8 +37,8 @@ export function CreateEntryForm() {
         </Field.Root>
 
         <ActionButtons
-          startLocation={startLocationRef.current?.value}
-          endLocation={endLocationRef.current?.value}
+          startLocation={startLocationRef}
+          endLocation={endLocationRef}
         />
       </VStack>
     </form>
