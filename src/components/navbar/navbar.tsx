@@ -1,6 +1,6 @@
 import { Button, Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
-import { Login } from "@/components/login";
+import { Login } from "@/components/login/login";
 import { Suspense } from "react";
 import { MdAdd } from "react-icons/md";
 

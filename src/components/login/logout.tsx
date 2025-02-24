@@ -10,7 +10,8 @@ export function Logout() {
 
   const onLogoutHandle = () => {
     supabase.auth.signOut();
-    router.refresh();
+
+    router.replace("/");
   };
 
   return (
