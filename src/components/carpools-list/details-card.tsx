@@ -24,7 +24,7 @@ export default function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
       border="xs"
       borderColor="gray.700"
       p="2"
-      w="full"
+      w="sm"
       boxShadow="lg"
     >
       <Card.Header p="0">
