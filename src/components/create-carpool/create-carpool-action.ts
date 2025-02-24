@@ -11,6 +11,7 @@ export async function createCarpool(
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,
+    polyline: newFormData.get("polyline") as string,
   };
 
   const result = formSchema.safeParse(formData);
