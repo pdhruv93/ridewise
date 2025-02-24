@@ -42,14 +42,7 @@ export function ActionButtons({
         Create new carpool
       </Button>
 
-      <Button
-        type="submit"
-        variant="solid"
-        colorPalette="teal"
-        px="4"
-        value="request"
-        asChild
-      >
+      <Button variant="outline" px="4" value="request" asChild>
         <NextLink
           href={`/list?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
         >

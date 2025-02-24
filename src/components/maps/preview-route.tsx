@@ -47,8 +47,6 @@ export function PreviewRoute({
 
       if (results.routes.length) {
         onRouteGenerated?.(results);
-
-        console.log(":::", results);
         setRoute(results);
       }
     } catch {
