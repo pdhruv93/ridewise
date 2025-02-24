@@ -1,10 +1,10 @@
 "use client";
 
 import { Input } from "@chakra-ui/react";
-import { CiSearch } from "react-icons/ci";
 import { InputGroup } from "../ui/input-group";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import { MdSearch } from "react-icons/md";
 
 export default function SearchBar({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -24,7 +24,7 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <InputGroup flex="1" w="full" startElement={<CiSearch />}>
+    <InputGroup flex="1" w="full" startElement={<MdSearch />}>
       <Input
         placeholder={placeholder}
         defaultValue={searchParams.get("query")?.toString()}

@@ -2,7 +2,7 @@ import { Button, Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { Login } from "@/components/login";
 import { Suspense } from "react";
-import { CiSearch } from "react-icons/ci";
+import { MdAdd } from "react-icons/md";
 
 export function Navbar() {
   return (
@@ -24,8 +24,8 @@ export function Navbar() {
 
       <HStack gap="4">
         <Button colorPalette="teal" variant="outline" asChild>
-          <Link href="/list">
-            Find carpools <CiSearch />
+          <Link href="/create">
+            Create carpool <MdAdd />
           </Link>
         </Button>
 
