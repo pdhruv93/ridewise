@@ -11,8 +11,6 @@ export default async function Page(props: {
   const startLocation = searchParams?.startLocation;
   const endLocation = searchParams?.endLocation;
 
-  console.log(":::", startLocation, endLocation);
-
   if (!startLocation || !endLocation) {
     console.log(startLocation, endLocation);
     // TODO: Generate toast notification

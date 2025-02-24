@@ -46,42 +46,46 @@ export async function CarpoolsList({
     >
       <Heading>Preview a carpool</Heading>
 
-      {(data as Tables<"carpools">[])?.map((carpool, index) => (
-        <Card.Root
-          key={`carpool-${index}`}
-          variant="elevated"
-          border="xs"
-          borderColor="gray.700"
-          p="2"
-          w="full"
-          boxShadow="lg"
-        >
-          <Card.Header p="0">
-            <Card.Title fontSize="sm">
-              <HStack w="full" align="start" alignItems="center">
-                <VStack w="full" align="start">
-                  <HStack>
-                    <MdLocationOn />
-                    (A) {carpool.start_location}
-                  </HStack>
+      {(data as Tables<"carpools">[])?.map((carpool, index) =>
+        carpool.start_location && carpool.end_location ? (
+          <Card.Root
+            key={`carpool-${index}`}
+            variant="elevated"
+            border="xs"
+            borderColor="gray.700"
+            p="2"
+            w="full"
+            boxShadow="lg"
+          >
+            <Card.Header p="0">
+              <Card.Title fontSize="sm">
+                <HStack w="full" align="start" alignItems="center">
+                  <VStack w="full" align="start">
+                    <HStack>
+                      <MdLocationOn />
+                      (A) {carpool.start_location}
+                    </HStack>
 
-                  <HStack>
-                    <MdLocationOn />
-                    (B) {carpool.end_location}
-                  </HStack>
-                </VStack>
-              </HStack>
-            </Card.Title>
-          </Card.Header>
+                    <HStack>
+                      <MdLocationOn />
+                      (B) {carpool.end_location}
+                    </HStack>
+                  </VStack>
+                </HStack>
+              </Card.Title>
+            </Card.Header>
 
-          <Card.Footer p="0" py="4">
-            <ActionButtons
-              startLocation={startLocation}
-              endLocation={endLocation}
-            />
-          </Card.Footer>
-        </Card.Root>
-      ))}
+            <Card.Footer p="0" py="4">
+              <ActionButtons
+                carpoolEndLocation={carpool.start_location}
+                carpoolStartLocation={carpool.end_location}
+                requestStartLocation={startLocation}
+                requestEndLocation={endLocation}
+              />
+            </Card.Footer>
+          </Card.Root>
+        ) : null
+      )}
     </VStack>
   );
 }
