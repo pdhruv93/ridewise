@@ -9,44 +9,76 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      carpool: {
+      carpool_requests: {
         Row: {
-          carpool_id: number
+          carpool_id: string | null
+          is_waiting: boolean | null
+          request_id: string | null
+          requested_at: string
+          requested_by: string | null
+        }
+        Insert: {
+          carpool_id?: string | null
+          is_waiting?: boolean | null
+          request_id?: string | null
+          requested_at?: string
+          requested_by?: string | null
+        }
+        Update: {
+          carpool_id?: string | null
+          is_waiting?: boolean | null
+          request_id?: string | null
+          requested_at?: string
+          requested_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "carpool_requests_carpool_id_fkey"
+            columns: ["carpool_id"]
+            isOneToOne: false
+            referencedRelation: "carpools"
+            referencedColumns: ["carpool_id"]
+          },
+        ]
+      }
+      carpools: {
+        Row: {
+          carpool_id: string
           created_at: string
           created_by: string | null
           distance: number | null
           encoded_polyline: string | null
           end_location: string | null
           gender_preference: string | null
-          isFullyBooked: boolean | null
+          is_fully_booked: boolean | null
           pickup_slot: string | null
           seats: number | null
           start_location: string | null
           time_min: number | null
         }
         Insert: {
-          carpool_id?: number
+          carpool_id?: string
           created_at?: string
           created_by?: string | null
           distance?: number | null
           encoded_polyline?: string | null
           end_location?: string | null
           gender_preference?: string | null
-          isFullyBooked?: boolean | null
+          is_fully_booked?: boolean | null
           pickup_slot?: string | null
           seats?: number | null
           start_location?: string | null
           time_min?: number | null
         }
         Update: {
-          carpool_id?: number
+          carpool_id?: string
           created_at?: string
           created_by?: string | null
           distance?: number | null
           encoded_polyline?: string | null
           end_location?: string | null
           gender_preference?: string | null
-          isFullyBooked?: boolean | null
+          is_fully_booked?: boolean | null
           pickup_slot?: string | null
           seats?: number | null
           start_location?: string | null
@@ -54,59 +86,54 @@ export type Database = {
         }
         Relationships: []
       }
-      carpool_requests: {
-        Row: {
-          carpool_id: number | null
-          distance: number | null
-          encoded_polyline: string | null
-          end_location: string | null
-          isWaiting: boolean | null
-          request_id: number
-          requested_at: string
-          requested_by: string | null
-          start_location: string | null
-          time_min: number | null
-        }
-        Insert: {
-          carpool_id?: number | null
-          distance?: number | null
-          encoded_polyline?: string | null
-          end_location?: string | null
-          isWaiting?: boolean | null
-          request_id?: number
-          requested_at?: string
-          requested_by?: string | null
-          start_location?: string | null
-          time_min?: number | null
-        }
-        Update: {
-          carpool_id?: number | null
-          distance?: number | null
-          encoded_polyline?: string | null
-          end_location?: string | null
-          isWaiting?: boolean | null
-          request_id?: number
-          requested_at?: string
-          requested_by?: string | null
-          start_location?: string | null
-          time_min?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "carpool_requests_carpool_id_fkey"
-            columns: ["carpool_id"]
-            isOneToOne: false
-            referencedRelation: "carpool"
-            referencedColumns: ["carpool_id"]
-          },
-        ]
-      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_carpool_with_requests: {
+        Args: {
+          search_carpool_id: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          encoded_polyline: string
+          seats: number
+          gender_preference: string
+          pickup_slot: string
+          distance: number
+          time_min: number
+          is_fully_booked: boolean
+          request_id: string
+          requested_at: string
+          requested_by: string
+          is_waiting: boolean
+        }[]
+      }
+      get_carpools: {
+        Args: {
+          logged_in_user_id: string
+          search_text: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          encoded_polyline: string
+          seats: number
+          gender_preference: string
+          pickup_slot: string
+          distance: number
+          time_min: number
+          is_fully_booked: boolean
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

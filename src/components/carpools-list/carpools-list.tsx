@@ -1,7 +1,7 @@
 import { type Tables } from "@/utils/supabase/database.types";
 import { createClient } from "@/utils/supabase/server";
 import { Wrap } from "@chakra-ui/react";
-import CarpoolDetails from "./details-card";
+import { CarpoolDetails } from "./details-card";
 
 export default async function CarpoolsListCard(props: {
   searchParams?: Promise<{
@@ -29,7 +29,7 @@ export default async function CarpoolsListCard(props: {
 
   return (
     <Wrap gap="4" maxH="50vh" overflowY="scroll">
-      {(data as Tables<"carpool">[])?.map((carpool, index) => (
+      {(data as Tables<"carpools">[])?.map((carpool, index) => (
         <CarpoolDetails key={`carpool-${index}`} carpool={carpool} />
       ))}
     </Wrap>

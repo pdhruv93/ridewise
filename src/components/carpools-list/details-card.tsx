@@ -12,12 +12,13 @@ import { type Tables } from "@/utils/supabase/database.types";
 import { ImLocation, ImLocation2 } from "react-icons/im";
 import { BiGroup } from "react-icons/bi";
 import { GiPathDistance } from "react-icons/gi";
+import NextLink from "next/link";
 
 interface CarpoolDetailsProps {
-  carpool: Tables<"carpool">;
+  carpool: Tables<"carpools">;
 }
 
-export default function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
+export function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
   return (
     <Card.Root
       variant="elevated"
@@ -79,8 +80,8 @@ export default function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
       </Card.Body>
 
       <Card.Footer p="0" py="4">
-        <Button size="sm" variant="outline" borderColor="gray.700">
-          Preview
+        <Button size="sm" variant="outline" borderColor="gray.700" asChild>
+          <NextLink href={`/carpool/${carpool.carpool_id}`}>Preview</NextLink>
         </Button>
       </Card.Footer>
     </Card.Root>

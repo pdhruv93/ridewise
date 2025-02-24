@@ -1,3 +1,5 @@
+import { CardpoolWithRequests } from "@/components/carpool-with-requests/CardpoolWithRequests";
+import { type CarpoolWithRequests } from "@/components/carpool-with-requests/types";
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
@@ -22,10 +24,9 @@ export default async function Carpool({
     notFound();
   }
 
-  const { data } = await supabase.rpc("get_carpools", {
-    logged_in_user_id: user.id,
-    search_text: query,
+  const { data } = await supabase.rpc("get_carpool_with_requests", {
+    search_carpool_id: carpoolId,
   });
 
-  return <>This is the details page page {carpoolId}</>;
+  return <CardpoolWithRequests carpool={data as CarpoolWithRequests} />;
 }
