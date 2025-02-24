@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Field, HStack } from "@chakra-ui/react";
+import { Button, Field, VStack } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { useRoute } from "./useRoute";
 
@@ -22,8 +22,8 @@ export function CreateCarpoolForm({
   } = useRoute(onCarpoolCreated);
 
   return (
-    <form action={createCarPool}>
-      <HStack gap="6" align="center" w="full">
+    <form action={createCarPool} style={{ width: "100%" }}>
+      <VStack gap="6" align="start" w="full">
         <Field.Root invalid={!!fieldErrors?.["startLocation"]}>
           <Field.Label>Start location (A)</Field.Label>
           <AutocompleteInput
@@ -59,7 +59,7 @@ export function CreateCarpoolForm({
         >
           {isRouteGenerated ? "Submit" : "Preview"}
         </Button>
-      </HStack>
+      </VStack>
     </form>
   );
 }
