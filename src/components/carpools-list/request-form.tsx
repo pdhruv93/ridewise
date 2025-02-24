@@ -1,4 +1,5 @@
 import { Button, Input } from "@chakra-ui/react";
+import { useSubmitRequest } from "./useSubmitRequest";
 
 interface RequestFormProps {
   carpoolId: string;
@@ -11,9 +12,11 @@ export default function RequestForm({
   requestStartLocation,
   requestEndLocation,
 }: RequestFormProps) {
+  const { formAction } = useSubmitRequest();
+
   return (
     <>
-      <form action="">
+      <form action={formAction}>
         <Input type="hidden" name="" defaultValue={carpoolId} />
         <Input
           type="hidden"
