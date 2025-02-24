@@ -1,11 +1,13 @@
+"use client";
+
 import { Box } from "@chakra-ui/react";
 import { useGenerateRoute } from "./useGenerateRoute";
 import { PropsWithChildren } from "react";
 import { DirectionsRenderer } from "@react-google-maps/api";
 
 interface PreviewRouteProps {
-  startLocation: string | undefined;
-  endLocation: string | undefined;
+  startLocation: string | null | undefined;
+  endLocation: string | null | undefined;
 }
 
 export function PreviewRoute({
@@ -14,6 +16,10 @@ export function PreviewRoute({
   children,
 }: PropsWithChildren<PreviewRouteProps>) {
   const { route, generateRoute } = useGenerateRoute();
+
+  if (!startLocation || !endLocation) {
+    return null;
+  }
 
   return (
     <Box onClick={() => generateRoute(startLocation, endLocation)}>
