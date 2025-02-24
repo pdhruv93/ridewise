@@ -31,11 +31,23 @@ export function ActionButtons({
 
   return (
     <ButtonGroup>
-      <Button type="submit" variant="solid" colorPalette="teal" px="4">
+      <Button
+        type="submit"
+        variant="solid"
+        colorPalette="teal"
+        px="4"
+        value="create"
+      >
         Create new carpool
       </Button>
 
-      <Button type="submit" variant="solid" colorPalette="teal" px="4">
+      <Button
+        type="submit"
+        variant="solid"
+        colorPalette="teal"
+        px="4"
+        value="request"
+      >
         Request carpool
       </Button>
     </ButtonGroup>

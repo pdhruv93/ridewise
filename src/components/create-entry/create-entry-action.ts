@@ -7,6 +7,8 @@ export async function createEntry(
   _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {
+  console.log(":::", newFormData);
+
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,

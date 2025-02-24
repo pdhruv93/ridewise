@@ -4,7 +4,7 @@ import { toaster } from "@/components/ui/toaster";
 import { createEntry } from "./create-entry-action";
 import { initialState } from "./form-schema";
 
-export function useRoute() {
+export function useCreateEntry() {
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
 
