@@ -55,7 +55,6 @@ export function useRoute(
   };
 
   return {
-    route,
     startLocationRef,
     endLocationRef,
     isPending,

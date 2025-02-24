@@ -1,7 +1,7 @@
-import { Card, HStack, Button, VStack } from "@chakra-ui/react";
+import { Button, Card, HStack, VStack } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
 import { type Tables } from "@/utils/supabase/database.types";
-import NextLink from "next/link";
+import { PreviewRoute } from "@/components/maps/preview-route";
 
 interface CarpoolDetailsProps {
   carpool: Tables<"carpools">;
@@ -36,9 +36,14 @@ export function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
       </Card.Header>
 
       <Card.Footer p="0" py="4">
-        <Button size="sm" variant="outline" borderColor="gray.700" asChild>
-          <NextLink href={`/carpool/${carpool.carpool_id}`}>Preview</NextLink>
-        </Button>
+        <PreviewRoute
+          startLocation={carpool.start_location}
+          endLocation={carpool.end_location}
+        >
+          <Button size="sm" variant="outline" borderColor="gray.700">
+            Preview
+          </Button>
+        </PreviewRoute>
       </Card.Footer>
     </Card.Root>
   );

@@ -5,13 +5,11 @@ import { formSchema, type FormState, initialState } from "./form-schema";
 
 export async function createCarpool(
   _test: FormState,
-  newFormData: FormData,
-  polyline?: string
+  newFormData: FormData
 ): Promise<FormState> {
   const formData: FormState["formData"] = {
     startLocation: newFormData.get("startLocation") as string,
     endLocation: newFormData.get("endLocation") as string,
-    polyline: newFormData.get("polyline") as string,
   };
 
   const result = formSchema.safeParse(formData);
@@ -33,7 +31,6 @@ export async function createCarpool(
     created_by: user?.id,
     start_location: formData.startLocation,
     end_location: formData.endLocation,
-    encoded_polyline: polyline,
   });
 
   if (error) {

@@ -52,7 +52,6 @@ export type Database = {
           carpool_id: string
           created_at: string
           created_by: string | null
-          encoded_polyline: string | null
           end_location: string | null
           is_open: boolean | null
           start_location: string | null
@@ -61,7 +60,6 @@ export type Database = {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
-          encoded_polyline?: string | null
           end_location?: string | null
           is_open?: boolean | null
           start_location?: string | null
@@ -70,7 +68,6 @@ export type Database = {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
-          encoded_polyline?: string | null
           end_location?: string | null
           is_open?: boolean | null
           start_location?: string | null
@@ -92,17 +89,13 @@ export type Database = {
           created_by: string
           start_location: string
           end_location: string
-          encoded_polyline: string
-          seats: number
-          gender_preference: string
-          pickup_slot: string
-          distance: number
-          time_min: number
-          is_fully_booked: boolean
-          request_id: string
-          requested_at: string
-          requested_by: string
-          is_waiting: boolean
+          is_open: boolean
+          req_id: string
+          req_at: string
+          req_by: string
+          req_is_waiting: boolean
+          req_start_location: string
+          req_end_location: string
         }[]
       }
       get_carpools: {
@@ -116,13 +109,7 @@ export type Database = {
           created_by: string
           start_location: string
           end_location: string
-          encoded_polyline: string
-          seats: number
-          gender_preference: string
-          pickup_slot: string
-          distance: number
-          time_min: number
-          is_fully_booked: boolean
+          is_open: boolean
         }[]
       }
     }

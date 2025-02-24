@@ -3,7 +3,6 @@ import { z } from "zod";
 export const formSchema = z.object({
   startLocation: z.string(),
   endLocation: z.string(),
-  polyline: z.string(),
 });
 
 export type FormState = {
@@ -17,7 +16,6 @@ export const initialState: FormState = {
   formData: {
     startLocation: "",
     endLocation: "",
-    polyline: "",
   },
   submitted: false,
   validationError: undefined,
