@@ -1,20 +1,13 @@
 "use client";
 
-import { Button, Field, VStack } from "@chakra-ui/react";
+import { Field, VStack } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { useRoute } from "./useRoute";
-import { PreviewRoute } from "@/components/maps/preview-route";
+import { ActionButtons } from "./action-buttons";
 
-export function CreateCarpoolForm() {
-  const {
-    startLocationRef,
-    endLocationRef,
-    createCarPool,
-    isPending,
-    fieldErrors,
-    isRouteGenerated,
-    setIsRouteGenerated,
-  } = useRoute();
+export function CreateEntryForm() {
+  const { startLocationRef, endLocationRef, createCarPool, fieldErrors } =
+    useRoute();
 
   return (
     <form action={createCarPool} style={{ width: "100%" }}>
@@ -43,28 +36,10 @@ export function CreateCarpoolForm() {
           <Field.ErrorText>{fieldErrors?.["endLocation"]?.[0]}</Field.ErrorText>
         </Field.Root>
 
-        {isRouteGenerated ? (
-          <Button
-            type="submit"
-            variant="solid"
-            colorPalette="teal"
-            loading={isPending}
-            spinnerPlacement="start"
-            px="4"
-          >
-            Submit
-          </Button>
-        ) : (
-          <PreviewRoute
-            startLocation={startLocationRef.current?.value}
-            endLocation={endLocationRef.current?.value}
-            onRouteGenerated={() => setIsRouteGenerated(true)}
-          >
-            <Button variant="solid" colorPalette="black" px="4">
-              Preview
-            </Button>
-          </PreviewRoute>
-        )}
+        <ActionButtons
+          startLocation={startLocationRef.current?.value}
+          endLocation={endLocationRef.current?.value}
+        />
       </VStack>
     </form>
   );

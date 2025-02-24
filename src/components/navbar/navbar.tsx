@@ -1,8 +1,7 @@
-import { Button, Container, Heading, HStack } from "@chakra-ui/react";
+import { Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { Login } from "@/components/login/login";
 import { Suspense } from "react";
-import { MdAdd } from "react-icons/md";
 
 export function Navbar() {
   return (
@@ -23,12 +22,6 @@ export function Navbar() {
       </Link>
 
       <HStack gap="4">
-        <Button colorPalette="teal" variant="outline" asChild>
-          <Link href="/create">
-            Create carpool <MdAdd />
-          </Link>
-        </Button>
-
         <Suspense>
           <Login />
         </Suspense>

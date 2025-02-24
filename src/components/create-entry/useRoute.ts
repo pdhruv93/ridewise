@@ -1,17 +1,15 @@
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 
 import { toaster } from "@/components/ui/toaster";
-import { createCarpool } from "./create-carpool-action";
+import { createEntry } from "./create-entry-action";
 import { initialState } from "./form-schema";
 
 export function useRoute() {
-  const [isRouteGenerated, setIsRouteGenerated] = useState(false);
-
   const startLocationRef = useRef<HTMLInputElement>(null);
   const endLocationRef = useRef<HTMLInputElement>(null);
 
   const [formState, createCarPool, isPending] = useActionState(
-    createCarpool,
+    createEntry,
     initialState
   );
 
@@ -30,8 +28,6 @@ export function useRoute() {
     startLocationRef,
     endLocationRef,
     isPending,
-    isRouteGenerated,
-    setIsRouteGenerated,
     fieldErrors: formState.validationError?.fieldErrors,
     createCarPool,
   };

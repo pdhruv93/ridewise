@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { formSchema, type FormState, initialState } from "./form-schema";
 
-export async function createCarpool(
+export async function createEntry(
   _test: FormState,
   newFormData: FormData
 ): Promise<FormState> {

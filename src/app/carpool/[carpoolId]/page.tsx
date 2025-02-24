@@ -1,5 +1,3 @@
-import { CardpoolWithRequests } from "@/components/carpool-with-requests/CardpoolWithRequests";
-import { type CarpoolWithRequests } from "@/components/carpool-with-requests/types";
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
@@ -28,5 +26,5 @@ export default async function Carpool({
     search_carpool_id: carpoolId,
   });
 
-  return <CardpoolWithRequests carpool={data as CarpoolWithRequests} />;
+  return <></>;
 }
