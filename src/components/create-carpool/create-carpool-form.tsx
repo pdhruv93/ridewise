@@ -3,23 +3,18 @@
 import { Button, Field, VStack } from "@chakra-ui/react";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { useRoute } from "./useRoute";
+import { PreviewRoute } from "@/components/maps/preview-route";
 
-interface CreateCarpoolFormProps {
-  onCarpoolCreated?: (route: google.maps.DirectionsResult) => void;
-}
-
-export function CreateCarpoolForm({
-  onCarpoolCreated,
-}: CreateCarpoolFormProps) {
+export function CreateCarpoolForm() {
   const {
     startLocationRef,
     endLocationRef,
     createCarPool,
-    calculateRoute,
     isPending,
-    isRouteGenerated,
     fieldErrors,
-  } = useRoute(onCarpoolCreated);
+    isRouteGenerated,
+    setIsRouteGenerated,
+  } = useRoute();
 
   return (
     <form action={createCarPool} style={{ width: "100%" }}>
@@ -48,17 +43,28 @@ export function CreateCarpoolForm({
           <Field.ErrorText>{fieldErrors?.["endLocation"]?.[0]}</Field.ErrorText>
         </Field.Root>
 
-        <Button
-          type={isRouteGenerated ? "submit" : "button"}
-          variant="solid"
-          colorPalette={isRouteGenerated ? "teal" : "black"}
-          loading={isPending}
-          spinnerPlacement="start"
-          px="4"
-          onClick={isRouteGenerated ? undefined : calculateRoute}
-        >
-          {isRouteGenerated ? "Submit" : "Preview"}
-        </Button>
+        {isRouteGenerated ? (
+          <Button
+            type="submit"
+            variant="solid"
+            colorPalette="teal"
+            loading={isPending}
+            spinnerPlacement="start"
+            px="4"
+          >
+            Submit
+          </Button>
+        ) : (
+          <PreviewRoute
+            startLocation={startLocationRef.current?.value}
+            endLocation={endLocationRef.current?.value}
+            onRouteGenerated={() => setIsRouteGenerated(true)}
+          >
+            <Button variant="solid" colorPalette="black" px="4">
+              Preview
+            </Button>
+          </PreviewRoute>
+        )}
       </VStack>
     </form>
   );

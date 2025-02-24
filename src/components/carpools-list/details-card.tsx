@@ -23,12 +23,12 @@ export function CarpoolDetails({ carpool }: CarpoolDetailsProps) {
             <VStack w="full" align="start">
               <HStack>
                 <MdLocationOn />
-                {carpool.start_location}
+                (A) {carpool.start_location}
               </HStack>
 
               <HStack>
                 <MdLocationOn />
-                {carpool.end_location}
+                (B) {carpool.end_location}
               </HStack>
             </VStack>
           </HStack>
