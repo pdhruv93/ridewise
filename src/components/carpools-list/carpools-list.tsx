@@ -77,6 +77,7 @@ export async function CarpoolsList({
 
             <Card.Footer p="0" py="4">
               <ActionButtons
+                carpoolId={carpool.carpool_id}
                 carpoolStartLocation={carpool.start_location}
                 carpoolEndLocation={carpool.end_location}
                 requestStartLocation={startLocation}

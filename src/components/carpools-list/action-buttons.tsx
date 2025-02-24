@@ -3,8 +3,10 @@
 import { Box, Button } from "@chakra-ui/react";
 import { useGenerateRoute } from "@/components/maps/useGenerateRoute";
 import { DirectionsRenderer } from "@react-google-maps/api";
+import RequestForm from "./request-form";
 
 interface ActionButtonsProps {
+  carpoolId: string;
   carpoolStartLocation: string;
   carpoolEndLocation: string;
   requestStartLocation: string;
@@ -12,6 +14,7 @@ interface ActionButtonsProps {
 }
 
 export function ActionButtons({
+  carpoolId,
   carpoolStartLocation,
   carpoolEndLocation,
   requestStartLocation,
@@ -42,9 +45,11 @@ export function ActionButtons({
     <Box>
       <DirectionsRenderer directions={carpoolRoute} />
 
-      <Button type="submit" variant="solid" colorPalette="teal" px="4">
-        Submit request
-      </Button>
+      <RequestForm
+        carpoolId={carpoolId}
+        requestStartLocation={requestStartLocation}
+        requestEndLocation={requestEndLocation}
+      />
     </Box>
   );
 }
