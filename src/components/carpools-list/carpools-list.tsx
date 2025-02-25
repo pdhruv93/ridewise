@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-import { toaster } from "@/components/ui/toaster";
 import { createClient } from "@/utils/supabase/server";
 import { Tables } from "@/utils/supabase/database.types";
 import { VStack, Card, HStack, Heading } from "@chakra-ui/react";
@@ -18,21 +16,15 @@ export async function CarpoolsList({
   const supabase = await createClient();
   const {
     data: { user },
-    error,
   } = await supabase.auth.getUser();
 
-  if (!user || error) {
-    toaster.create({
-      title: "Need to login to access this feature",
-      type: "error",
-    });
-
-    redirect("/");
+  if (!user) {
+    return;
   }
 
   const { data } = await supabase.rpc("get_carpools", {
     logged_in_user_id: user.id,
-    search_text: "malmi",
+    search_text: "",
   });
 
   return (

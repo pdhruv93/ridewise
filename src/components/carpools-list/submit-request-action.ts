@@ -19,16 +19,16 @@ export async function submitRequest(
   } = await supabase.auth.getUser();
 
   const { error } = await supabase.from("carpool_request").insert({
-    created_by: user?.id,
-    start_location: formData.startLocation,
-    end_location: formData.endLocation,
+    requested_by: user?.id,
+    carpool_id: formData.carpoolId,
+    start_location: formData.requestStartLocation,
+    end_location: formData.requestEndLocation,
   });
 
   if (error) {
     return {
       formData,
       submitted: true,
-      validationError: undefined,
       errorMessage: error.message,
     };
   }

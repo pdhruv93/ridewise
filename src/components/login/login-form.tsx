@@ -33,7 +33,7 @@ export function LoginForm() {
 
         <Button
           type="submit"
-          variant="outline"
+          variant="solid"
           size="xs"
           loading={isPending}
           spinnerPlacement="start"
