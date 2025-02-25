@@ -1,7 +1,9 @@
 import { toaster } from "@/components/ui/toaster";
+import { useGoogleMap } from "@react-google-maps/api";
 import { useState } from "react";
 
 export function useShowRoute() {
+  const map = useGoogleMap();
   const [areRoutesGenerated, setAreRoutesGenerated] = useState(false);
 
   const showRoute = async (
@@ -14,7 +16,13 @@ export function useShowRoute() {
     }
 
     const directionService = new google.maps.DirectionsService();
-    const directionsDisplay = new google.maps.DirectionsRenderer();
+    const originalRouteRenderer = new google.maps.DirectionsRenderer();
+    const withWaypointsRouteRenderer = new google.maps.DirectionsRenderer({
+      polylineOptions: { strokeColor: "#000000" },
+    });
+
+    originalRouteRenderer.setMap(map);
+    withWaypointsRouteRenderer.setMap(map);
 
     try {
       const results = await directionService.route({
@@ -25,7 +33,7 @@ export function useShowRoute() {
       });
 
       if (results.routes.length) {
-        directionsDisplay.setDirections(results);
+        originalRouteRenderer.setDirections(results);
       }
 
       // Show Route with waypoints
@@ -40,7 +48,7 @@ export function useShowRoute() {
         });
 
         if (results.routes.length) {
-          directionsDisplay.setDirections(results);
+          withWaypointsRouteRenderer.setDirections(results);
         }
       }
 
