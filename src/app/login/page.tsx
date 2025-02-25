@@ -9,7 +9,7 @@ import { LoginForm } from "@/components/login/login-form";
 
 export default function LoginModal() {
   return (
-    <DialogRoot size="xs" lazyMount>
+    <DialogRoot size="xs" open lazyMount>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Login</DialogTitle>

@@ -17,7 +17,7 @@ export default function RequestForm({
   return (
     <>
       <form action={formAction}>
-        <Input type="hidden" name="" defaultValue={carpoolId} />
+        <Input type="hidden" name="carpoolId" defaultValue={carpoolId} />
         <Input
           type="hidden"
           name="requestStartLocation"
