@@ -1,9 +1,14 @@
 import { Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
-import { Login } from "@/components/login/login";
-import { Suspense } from "react";
+import { Logout } from "@/components/login/logout";
+import { createClient } from "@/utils/supabase/server";
 
-export function Navbar() {
+export async function Navbar() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <Container
       w="full"
@@ -21,11 +26,9 @@ export function Navbar() {
         </Heading>
       </Link>
 
-      <HStack gap="4">
-        <Suspense>
-          <Login />
-        </Suspense>
-      </HStack>
+      {user ? <Logout /> : null}
+
+      <HStack gap="4"></HStack>
     </Container>
   );
 }
