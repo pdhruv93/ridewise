@@ -15,7 +15,7 @@ export function useSubmitRequest() {
       toaster.create({
         title: formState.errorMessage
           ? formState.errorMessage
-          : "Carpool created",
+          : "Carpool requested",
         type: formState.errorMessage ? "error" : "success",
       });
     }

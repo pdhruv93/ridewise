@@ -18,7 +18,7 @@ export async function submitRequest(
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { error } = await supabase.from("carpool_request").insert({
+  const { error } = await supabase.from("carpool_requests").insert({
     requested_by: user?.id,
     carpool_id: formData.carpoolId,
     start_location: formData.requestStartLocation,
