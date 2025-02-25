@@ -1,9 +1,8 @@
 "use client";
 
 import { Box, Button } from "@chakra-ui/react";
-import { useGenerateRoute } from "@/components/maps/useGenerateRoute";
-import { DirectionsRenderer } from "@react-google-maps/api";
 import RequestForm from "./request-form";
+import { useShowRoute } from "@/components/maps/useShowRoute";
 
 interface ActionButtonsProps {
   carpoolId: string;
@@ -20,21 +19,20 @@ export function ActionButtons({
   requestStartLocation,
   requestEndLocation,
 }: ActionButtonsProps) {
-  const { originalRoute, routeWithWayPoints, generateRoute } =
-    useGenerateRoute();
+  const { areRoutesGenerated, showRoute } = useShowRoute();
   const wayPoints: google.maps.DirectionsWaypoint[] = [
     { location: requestStartLocation, stopover: true },
     { location: requestEndLocation, stopover: true },
   ];
 
-  if (!originalRoute) {
+  if (!areRoutesGenerated) {
     return (
       <Button
         variant="solid"
         colorPalette="black"
         px="4"
         onClick={() =>
-          generateRoute(carpoolStartLocation, carpoolEndLocation, wayPoints)
+          showRoute(carpoolStartLocation, carpoolEndLocation, wayPoints)
         }
       >
         Preview
@@ -44,9 +42,6 @@ export function ActionButtons({
 
   return (
     <Box>
-      <DirectionsRenderer directions={originalRoute} />
-      <DirectionsRenderer directions={routeWithWayPoints} />
-
       <RequestForm
         carpoolId={carpoolId}
         requestStartLocation={requestStartLocation}
