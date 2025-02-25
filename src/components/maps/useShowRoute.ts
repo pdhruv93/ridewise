@@ -13,6 +13,7 @@ export function useShowRoute() {
     const midPointOnRoute = Math.floor(
       results.routes[0].legs[0].steps.length / 2
     );
+
     const infowindow = new google.maps.InfoWindow();
 
     if (title) {
@@ -25,10 +26,9 @@ export function useShowRoute() {
         title +
         "</text>" +
         "<br>" +
-        results.routes[0].legs[0].steps[midPointOnRoute].distance?.text +
+        results.routes[0].legs[0].distance?.text +
         "<br>" +
-        results.routes[0].legs[0].steps[midPointOnRoute].duration?.text +
-        " " +
+        results.routes[0].legs[0].duration?.text +
         "</span>"
     );
 
