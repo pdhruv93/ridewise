@@ -19,7 +19,6 @@ export default function RootLayout({
       <body>
         <Provider>
           <Navbar />
-
           <MapContainer>{children}</MapContainer>
           <Toaster />
         </Provider>
