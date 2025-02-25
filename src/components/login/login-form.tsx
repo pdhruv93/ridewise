@@ -10,8 +10,6 @@ import { toaster } from "@/components/ui/toaster";
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, initialState);
 
-  console.log(":::", state);
-
   useEffect(() => {
     if (state.submitted) {
       toaster.create({
