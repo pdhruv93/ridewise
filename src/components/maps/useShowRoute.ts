@@ -6,6 +6,39 @@ export function useShowRoute() {
   const map = useGoogleMap();
   const [areRoutesGenerated, setAreRoutesGenerated] = useState(false);
 
+  const showInfoWindow = (
+    results: google.maps.DirectionsResult,
+    title?: string
+  ) => {
+    const midPointOnRoute = Math.floor(
+      results.routes[0].legs[0].steps.length / 2
+    );
+    const infowindow = new google.maps.InfoWindow();
+
+    if (title) {
+      infowindow.setHeaderContent(title);
+    }
+
+    infowindow.setContent(
+      "<span style='color:black;'>" +
+        "<text style='font-weight:bold;'>" +
+        title +
+        "</text>" +
+        "<br>" +
+        results.routes[0].legs[0].steps[midPointOnRoute].distance?.text +
+        "<br>" +
+        results.routes[0].legs[0].steps[midPointOnRoute].duration?.text +
+        " " +
+        "</span>"
+    );
+
+    infowindow.setPosition(
+      results.routes[0].legs[0].steps[midPointOnRoute].end_location
+    );
+    infowindow.setOptions({ headerDisabled: true });
+    infowindow.open(map);
+  };
+
   const showRoute = async (
     startLocation: string | null | undefined,
     endLocation: string | null | undefined,
@@ -19,6 +52,7 @@ export function useShowRoute() {
     const originalRouteRenderer = new google.maps.DirectionsRenderer();
     const withWaypointsRouteRenderer = new google.maps.DirectionsRenderer({
       polylineOptions: { strokeColor: "#000000" },
+      suppressInfoWindows: false,
     });
 
     originalRouteRenderer.setMap(map);
@@ -34,6 +68,7 @@ export function useShowRoute() {
 
       if (results.routes.length) {
         originalRouteRenderer.setDirections(results);
+        showInfoWindow(results, "Original route");
       }
 
       // Show Route with waypoints
@@ -49,6 +84,7 @@ export function useShowRoute() {
 
         if (results.routes.length) {
           withWaypointsRouteRenderer.setDirections(results);
+          showInfoWindow(results, "Route with stops");
         }
       }
 
