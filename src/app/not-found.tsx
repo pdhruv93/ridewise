@@ -9,7 +9,7 @@ export default function NotFound() {
       <Center h="100px" w="full">
         <VStack bgColor="black" p="2" w="full">
           <Heading size="3xl">
-            The resource you requested does not exists or you dont have enoght
+            The resource you requested does not exists or you dont have enough
             permissions to access it.
           </Heading>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { VStack, Input, Button } from "@chakra-ui/react";
+import { VStack, Input, Button, FieldHelperText } from "@chakra-ui/react";
 import { login } from "./login-action";
 import { Field } from "@/components/ui/field";
 import { useActionState, useEffect } from "react";
@@ -29,6 +29,9 @@ export function LoginForm() {
             defaultValue={state.formData.email}
             px="2"
           />
+          <FieldHelperText>
+            Use the link sent to the mail to login
+          </FieldHelperText>
         </Field>
 
         <Button
