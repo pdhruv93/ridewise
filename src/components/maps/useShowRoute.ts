@@ -10,6 +10,16 @@ export function useShowRoute() {
     results: google.maps.DirectionsResult,
     title?: string
   ) => {
+    const totalDistance = results.routes[0].legs.reduce(
+      (acc, cv) => acc + (cv.distance?.value ?? 0),
+      0
+    );
+
+    const totalTime = results.routes[0].legs.reduce(
+      (acc, cv) => acc + (cv.duration?.value ?? 0),
+      0
+    );
+
     const midPointOnRoute = Math.floor(
       results.routes[0].legs[0].steps.length / 2
     );
@@ -26,16 +36,18 @@ export function useShowRoute() {
         title +
         "</text>" +
         "<br>" +
-        results.routes[0].legs[0].distance?.text +
+        Math.floor(totalDistance / 1000) +
+        " km" +
         "<br>" +
-        results.routes[0].legs[0].duration?.text +
+        Math.floor(totalTime / 60) +
+        " min" +
         "</span>"
     );
 
     infowindow.setPosition(
       results.routes[0].legs[0].steps[midPointOnRoute].end_location
     );
-    infowindow.setOptions({ headerDisabled: true });
+    infowindow.setOptions({ headerDisabled: false });
     infowindow.open(map);
   };
 
