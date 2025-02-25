@@ -14,21 +14,20 @@ export function useShowRoute() {
       (acc, cv) => acc + (cv.distance?.value ?? 0),
       0
     );
-
     const totalTime = results.routes[0].legs.reduce(
       (acc, cv) => acc + (cv.duration?.value ?? 0),
       0
     );
 
+    // calculate mid point on route
+    const midLeg = Math.floor(results.routes[0].legs.length / 2);
     const midPointOnRoute = Math.floor(
-      results.routes[0].legs[0].steps.length / 2
+      results.routes[0].legs[midLeg].steps.length / 2
     );
+    const midPoint =
+      results.routes[0].legs[midLeg].steps[midPointOnRoute].end_location;
 
     const infowindow = new google.maps.InfoWindow();
-
-    if (title) {
-      infowindow.setHeaderContent(title);
-    }
 
     infowindow.setContent(
       "<span style='color:black;'>" +
@@ -44,10 +43,8 @@ export function useShowRoute() {
         "</span>"
     );
 
-    infowindow.setPosition(
-      results.routes[0].legs[0].steps[midPointOnRoute].end_location
-    );
-    infowindow.setOptions({ headerDisabled: false });
+    infowindow.setPosition(midPoint);
+    infowindow.setOptions({ headerDisabled: true });
     infowindow.open(map);
   };
 
