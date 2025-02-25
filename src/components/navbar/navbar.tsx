@@ -1,4 +1,4 @@
-import { Container, Heading, HStack } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import Link from "next/link";
 import { Logout } from "@/components/login/logout";
 import { createClient } from "@/utils/supabase/server";
@@ -27,8 +27,6 @@ export async function Navbar() {
       </Link>
 
       {user ? <Logout /> : null}
-
-      <HStack gap="4"></HStack>
     </Container>
   );
 }
