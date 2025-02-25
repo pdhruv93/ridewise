@@ -9,38 +9,67 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      carpool: {
+      carpool_requests: {
         Row: {
-          carpool_id: number
-          created_at: string
-          created_by: string | null
-          encoded_polyline: string | null
+          carpool_id: string | null
           end_location: string | null
-          gender_preference: string | null
-          pickup_slot: string | null
-          seats: number | null
+          is_waiting: boolean | null
+          request_id: string
+          requested_at: string
+          requested_by: string | null
           start_location: string | null
         }
         Insert: {
-          carpool_id?: number
-          created_at?: string
-          created_by?: string | null
-          encoded_polyline?: string | null
+          carpool_id?: string | null
           end_location?: string | null
-          gender_preference?: string | null
-          pickup_slot?: string | null
-          seats?: number | null
+          is_waiting?: boolean | null
+          request_id?: string
+          requested_at?: string
+          requested_by?: string | null
           start_location?: string | null
         }
         Update: {
-          carpool_id?: number
+          carpool_id?: string | null
+          end_location?: string | null
+          is_waiting?: boolean | null
+          request_id?: string
+          requested_at?: string
+          requested_by?: string | null
+          start_location?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "carpool_requests_carpool_id_fkey"
+            columns: ["carpool_id"]
+            isOneToOne: false
+            referencedRelation: "carpools"
+            referencedColumns: ["carpool_id"]
+          },
+        ]
+      }
+      carpools: {
+        Row: {
+          carpool_id: string
+          created_at: string
+          created_by: string | null
+          end_location: string | null
+          is_open: boolean | null
+          start_location: string | null
+        }
+        Insert: {
+          carpool_id?: string
           created_at?: string
           created_by?: string | null
-          encoded_polyline?: string | null
           end_location?: string | null
-          gender_preference?: string | null
-          pickup_slot?: string | null
-          seats?: number | null
+          is_open?: boolean | null
+          start_location?: string | null
+        }
+        Update: {
+          carpool_id?: string
+          created_at?: string
+          created_by?: string | null
+          end_location?: string | null
+          is_open?: boolean | null
           start_location?: string | null
         }
         Relationships: []
@@ -50,7 +79,39 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_carpool_with_requests: {
+        Args: {
+          search_carpool_id: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          is_open: boolean
+          req_id: string
+          req_at: string
+          req_by: string
+          req_is_waiting: boolean
+          req_start_location: string
+          req_end_location: string
+        }[]
+      }
+      get_carpools: {
+        Args: {
+          logged_in_user_id: string
+          search_text: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          is_open: boolean
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

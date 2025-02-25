@@ -1,23 +1,23 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  startLocation: z.string(),
-  endLocation: z.string(),
+  carpoolId: z.string(),
+  requestStartLocation: z.string(),
+  requestEndLocation: z.string(),
 });
 
 export type FormState = {
   formData: z.infer<typeof formSchema>;
   submitted: boolean;
-  validationError: z.inferFlattenedErrors<typeof formSchema> | undefined;
   errorMessage: string | undefined;
 };
 
 export const initialState: FormState = {
   formData: {
-    startLocation: "",
-    endLocation: "",
+    carpoolId: "",
+    requestStartLocation: "",
+    requestEndLocation: "",
   },
   submitted: false,
-  validationError: undefined,
   errorMessage: undefined,
 };

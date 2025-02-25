@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Button,
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import {
   PopoverTrigger,
   PopoverRoot,
@@ -22,23 +15,7 @@ export async function Login() {
   const { data, error } = await supabase.auth.getUser();
 
   if (!error && data?.user) {
-    return (
-      <MenuRoot positioning={{ placement: "bottom-end" }}>
-        <MenuTrigger asChild>
-          <Avatar.Root colorPalette="teal" cursor="pointer">
-            <Avatar.Fallback />
-          </Avatar.Root>
-        </MenuTrigger>
-
-        <MenuContent pos="relative">
-          <MenuItem value="my-carpools" p="2" cursor="pointer">
-            My Carpools
-          </MenuItem>
-
-          <Logout />
-        </MenuContent>
-      </MenuRoot>
-    );
+    return <Logout />;
   }
 
   return (
