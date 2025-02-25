@@ -24,7 +24,7 @@ export async function CarpoolsList({
 
   const { data } = await supabase.rpc("get_carpools", {
     logged_in_user_id: user.id,
-    search_text: "malmi",
+    search_text: "",
   });
 
   return (
