@@ -2,13 +2,16 @@ import { toaster } from "@/components/ui/toaster";
 import { useState } from "react";
 
 export function useGenerateRoute() {
-  const [route, setRoute] = useState<google.maps.DirectionsResult | undefined>(
-    undefined
-  );
+  const [originalRoute, setOriginalRoute] = useState<
+    google.maps.DirectionsResult | undefined
+  >(undefined);
+  const [routeWithWayPoints, setRouteWithWayPoints] = useState<
+    google.maps.DirectionsResult | undefined
+  >(undefined);
 
   const generateRoute = async (
-    startLocation: string | undefined,
-    endLocation: string | undefined,
+    startLocation: string | null | undefined,
+    endLocation: string | null | undefined,
     waypoints?: google.maps.DirectionsWaypoint[]
   ) => {
     if (!startLocation || !endLocation) {
@@ -23,12 +26,25 @@ export function useGenerateRoute() {
         destination: endLocation,
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: false,
-        waypoints,
-        optimizeWaypoints: true,
       });
 
       if (results.routes.length) {
-        setRoute(results);
+        setOriginalRoute(results);
+      }
+
+      if (waypoints?.length) {
+        const results = await directionService.route({
+          origin: startLocation,
+          destination: endLocation,
+          travelMode: google.maps.TravelMode.DRIVING,
+          provideRouteAlternatives: false,
+          waypoints,
+          optimizeWaypoints: true,
+        });
+
+        if (results.routes.length) {
+          setRouteWithWayPoints(results);
+        }
       }
     } catch {
       toaster.create({
@@ -38,5 +54,5 @@ export function useGenerateRoute() {
     }
   };
 
-  return { route, generateRoute };
+  return { originalRoute, routeWithWayPoints, generateRoute };
 }

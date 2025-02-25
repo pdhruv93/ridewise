@@ -15,9 +15,9 @@ export function ActionButtons({
   startLocation,
   endLocation,
 }: ActionButtonsProps) {
-  const { route, generateRoute } = useGenerateRoute();
+  const { originalRoute, generateRoute } = useGenerateRoute();
 
-  if (!route) {
+  if (!originalRoute) {
     return (
       <Button
         variant="solid"
@@ -37,7 +37,7 @@ export function ActionButtons({
 
   return (
     <Box>
-      <DirectionsRenderer directions={route} />
+      <DirectionsRenderer directions={originalRoute} />
 
       <ButtonGroup>
         <Button type="submit" variant="solid" colorPalette="teal" px="4">
