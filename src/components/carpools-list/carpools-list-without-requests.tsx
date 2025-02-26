@@ -1,49 +1,26 @@
-import { createClient } from "@/utils/supabase/server";
-import { Tables } from "@/utils/supabase/database.types";
 import { VStack, Card, HStack, Heading } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
 import { ActionButtons } from "./action-buttons";
+import { type CarpoolWithoutRequests } from "./types";
 
-interface CarpoolsListProps {
-  startLocation: string;
-  endLocation: string;
+interface CarpoolsListWithoutRequestsProps {
+  requestStartLocation: string;
+  requestEndLocation: string;
+  carpoolsWithoutRequests: CarpoolWithoutRequests[];
 }
 
-export async function CarpoolsList({
-  startLocation,
-  endLocation,
-}: CarpoolsListProps) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return;
+export async function CarpoolsListWithoutRequests({
+  requestStartLocation,
+  requestEndLocation,
+  carpoolsWithoutRequests,
+}: CarpoolsListWithoutRequestsProps) {
+  if (!carpoolsWithoutRequests.length) {
+    return <Heading fontSize="md">Nothing found :)</Heading>;
   }
 
-  const { data } = await supabase.rpc("get_carpools", {
-    exclude_user: user.id,
-    search_text: "",
-  });
-
   return (
-    <VStack
-      gap="4"
-      maxH="50vh"
-      overflowY="scroll"
-      scrollbar="hidden"
-      scrollBehavior="smooth"
-      align="start"
-    >
-      <VStack gap="0" align="start">
-        <Heading fontSize="xl">Here are some carpool options</Heading>
-        <Heading fontSize="sm">
-          for your journey from {startLocation} to {endLocation}
-        </Heading>
-      </VStack>
-
-      {(data as Tables<"carpools">[])?.map((carpool, index) =>
+    <>
+      {carpoolsWithoutRequests?.map((carpool, index) =>
         carpool.start_location && carpool.end_location ? (
           <Card.Root
             key={`carpool-${index}`}
@@ -77,13 +54,13 @@ export async function CarpoolsList({
                 carpoolId={carpool.carpool_id}
                 carpoolStartLocation={carpool.start_location}
                 carpoolEndLocation={carpool.end_location}
-                requestStartLocation={startLocation}
-                requestEndLocation={endLocation}
+                requestStartLocation={requestStartLocation}
+                requestEndLocation={requestEndLocation}
               />
             </Card.Footer>
           </Card.Root>
         ) : null
       )}
-    </VStack>
+    </>
   );
 }
