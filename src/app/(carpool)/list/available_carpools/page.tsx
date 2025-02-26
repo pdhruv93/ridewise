@@ -31,14 +31,7 @@ export default async function JoinCarpool(props: {
   });
 
   return (
-    <VStack
-      gap="4"
-      maxH="50vh"
-      overflowY="scroll"
-      scrollbar="hidden"
-      scrollBehavior="smooth"
-      align="start"
-    >
+    <>
       <VStack align="start" gap="0">
         <Heading fontSize="xl">Here are some carpool options</Heading>
         <Heading fontSize="sm">
@@ -61,6 +54,6 @@ export default async function JoinCarpool(props: {
           }
         />
       ))}
-    </VStack>
+    </>
   );
 }
