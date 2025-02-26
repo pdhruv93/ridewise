@@ -24,11 +24,11 @@ export default async function Requests() {
           request={request}
           action={
             <ActionButtons
-              carpoolId={""}
-              carpoolStartLocation={null}
-              carpoolEndLocation={null}
-              requestStartLocation={""}
-              requestEndLocation={""}
+              carpoolId={request.carpool_id}
+              carpoolStartLocation={request.start_location}
+              carpoolEndLocation={request.end_location}
+              requestStartLocation={request.req_start_location}
+              requestEndLocation={request.end_location}
             />
           }
         />
