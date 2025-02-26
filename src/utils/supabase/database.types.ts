@@ -12,30 +12,30 @@ export type Database = {
       carpool_requests: {
         Row: {
           carpool_id: string | null
-          end_location: string | null
+          request_end_location: string | null
           request_id: string
+          request_start_location: string | null
           request_status: string | null
           requested_at: string
           requested_by: string | null
-          start_location: string | null
         }
         Insert: {
           carpool_id?: string | null
-          end_location?: string | null
+          request_end_location?: string | null
           request_id?: string
+          request_start_location?: string | null
           request_status?: string | null
           requested_at?: string
           requested_by?: string | null
-          start_location?: string | null
         }
         Update: {
           carpool_id?: string | null
-          end_location?: string | null
+          request_end_location?: string | null
           request_id?: string
+          request_start_location?: string | null
           request_status?: string | null
           requested_at?: string
           requested_by?: string | null
-          start_location?: string | null
         }
         Relationships: [
           {
