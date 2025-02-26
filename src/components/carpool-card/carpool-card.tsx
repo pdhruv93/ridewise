@@ -1,6 +1,7 @@
 import { Card, HStack, Tag, VStack } from "@chakra-ui/react";
 import { type Carpool } from "./types";
 import { MdLocationOn } from "react-icons/md";
+import { RequestsList } from "./requests-list";
 
 interface CarpoolCardProps {
   carpool: Carpool;
@@ -33,6 +34,8 @@ export function CarpoolCard({ carpool, action }: CarpoolCardProps) {
               <MdLocationOn />
               {carpool.end_location}
             </HStack>
+
+            <RequestsList requests={carpool.requests} />
           </VStack>
         </Card.Title>
       </Card.Header>

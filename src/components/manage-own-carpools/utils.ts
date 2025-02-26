@@ -16,9 +16,8 @@ export function groupCarpoolRequests(
         (uc) => uc.carpool_id === carpool.carpool_id
       );
 
-      groupedCarpools.push({
-        ...carpool,
-        requests: allCarpoolsWithThisId.map((carpool) => ({
+      const allRequestsForThisCarppolId = allCarpoolsWithThisId
+        .map((carpool) => ({
           carpool_id: carpool.carpool_id,
           end_location: carpool.end_location,
           request_id: carpool.req_id,
@@ -28,7 +27,12 @@ export function groupCarpoolRequests(
           start_location: carpool.end_location,
           request_end_location: carpool.req_end_location,
           request_start_location: carpool.req_start_location,
-        })),
+        }))
+        .filter((request) => !!request.request_id);
+
+      groupedCarpools.push({
+        ...carpool,
+        requests: allRequestsForThisCarppolId,
       });
     }
   });
