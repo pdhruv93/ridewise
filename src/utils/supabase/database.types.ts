@@ -91,28 +91,14 @@ export type Database = {
           end_location: string
           status: string
           req_id: string
-          req_at: string
           req_by: string
+          req_at: string
           req_status: string
           req_start_location: string
           req_end_location: string
         }[]
       }
-      get_carpools: {
-        Args: {
-          exclude_user: string
-          search_text: string
-        }
-        Returns: {
-          carpool_id: string
-          created_at: string
-          created_by: string
-          start_location: string
-          end_location: string
-          status: string
-        }[]
-      }
-      get_requests_from_user_with_carpool_details: {
+      get_requests_from_user: {
         Args: {
           user_id: string
         }
@@ -129,6 +115,20 @@ export type Database = {
           req_status: string
           req_start_location: string
           req_end_location: string
+        }[]
+      }
+      search_carpools_exclude_user: {
+        Args: {
+          exclude_user: string
+          search_text: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          status: string
         }[]
       }
     }
