@@ -2,9 +2,10 @@
 
 import { Button } from "@chakra-ui/react";
 import { useShowRoute } from "@/components/maps/useShowRoute";
+import DeleteForm from "./delete-form";
 
 interface ActionButtonsProps {
-  carpoolId: string;
+  requestId: string;
   carpoolStartLocation: string | null;
   carpoolEndLocation: string | null;
   requestStartLocation: string;
@@ -12,7 +13,7 @@ interface ActionButtonsProps {
 }
 
 export function ActionButtons({
-  carpoolId,
+  requestId,
   carpoolStartLocation,
   carpoolEndLocation,
   requestStartLocation,
@@ -23,6 +24,10 @@ export function ActionButtons({
     { location: requestStartLocation, stopover: true },
     { location: requestEndLocation, stopover: true },
   ];
+
+  if (!requestId) {
+    return null;
+  }
 
   if (!areRoutesGenerated) {
     return (
@@ -39,9 +44,5 @@ export function ActionButtons({
     );
   }
 
-  return (
-    <Button variant="solid" colorPalette="fg.error" px="4">
-      Preview
-    </Button>
-  );
+  return <DeleteForm requestId={requestId} />;
 }
