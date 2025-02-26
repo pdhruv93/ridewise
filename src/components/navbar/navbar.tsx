@@ -1,7 +1,7 @@
 import { Container, Heading } from "@chakra-ui/react";
 import Link from "next/link";
-import { Logout } from "@/components/login/logout";
 import { createClient } from "@/utils/supabase/server";
+import { UserMenu } from "./profile-menu";
 
 export async function Navbar() {
   const supabase = await createClient();
@@ -26,7 +26,7 @@ export async function Navbar() {
         </Heading>
       </Link>
 
-      {user ? <Logout /> : null}
+      {user ? <UserMenu /> : null}
     </Container>
   );
 }

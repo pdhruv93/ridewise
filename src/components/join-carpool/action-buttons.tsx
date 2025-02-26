@@ -1,13 +1,13 @@
 "use client";
 
-import { Box, Button } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import RequestForm from "./request-form";
 import { useShowRoute } from "@/components/maps/useShowRoute";
 
 interface ActionButtonsProps {
   carpoolId: string;
-  carpoolStartLocation: string;
-  carpoolEndLocation: string;
+  carpoolStartLocation: string | null;
+  carpoolEndLocation: string | null;
   requestStartLocation: string;
   requestEndLocation: string;
 }
@@ -25,6 +25,10 @@ export function ActionButtons({
     { location: requestEndLocation, stopover: true },
   ];
 
+  if (!carpoolStartLocation || !carpoolEndLocation) {
+    return null;
+  }
+
   if (!areRoutesGenerated) {
     return (
       <Button
@@ -41,12 +45,10 @@ export function ActionButtons({
   }
 
   return (
-    <Box>
-      <RequestForm
-        carpoolId={carpoolId}
-        requestStartLocation={requestStartLocation}
-        requestEndLocation={requestEndLocation}
-      />
-    </Box>
+    <RequestForm
+      carpoolId={carpoolId}
+      requestStartLocation={requestStartLocation}
+      requestEndLocation={requestEndLocation}
+    />
   );
 }

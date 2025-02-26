@@ -39,9 +39,9 @@ export function ActionButtons({
 
       <Button variant="outline" px="4" value="request" asChild>
         <NextLink
-          href={`/list?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
+          href={`/list/available_carpools?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
         >
-          View carpools
+          Join carpool
         </NextLink>
       </Button>
     </ButtonGroup>

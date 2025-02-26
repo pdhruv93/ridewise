@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
-import { Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
 export function Logout() {
@@ -14,9 +14,5 @@ export function Logout() {
     router.refresh();
   };
 
-  return (
-    <Button variant="outline" color="fg.error" px="4" onClick={onLogoutHandle}>
-      Signout
-    </Button>
-  );
+  return <Box onClick={onLogoutHandle}>Signout</Box>;
 }
