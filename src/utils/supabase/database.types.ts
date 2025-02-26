@@ -13,8 +13,8 @@ export type Database = {
         Row: {
           carpool_id: string | null
           end_location: string | null
-          is_waiting: boolean | null
           request_id: string
+          request_status: string | null
           requested_at: string
           requested_by: string | null
           start_location: string | null
@@ -22,8 +22,8 @@ export type Database = {
         Insert: {
           carpool_id?: string | null
           end_location?: string | null
-          is_waiting?: boolean | null
           request_id?: string
+          request_status?: string | null
           requested_at?: string
           requested_by?: string | null
           start_location?: string | null
@@ -31,8 +31,8 @@ export type Database = {
         Update: {
           carpool_id?: string | null
           end_location?: string | null
-          is_waiting?: boolean | null
           request_id?: string
+          request_status?: string | null
           requested_at?: string
           requested_by?: string | null
           start_location?: string | null
@@ -53,24 +53,24 @@ export type Database = {
           created_at: string
           created_by: string | null
           end_location: string | null
-          is_open: boolean | null
           start_location: string | null
+          status: string | null
         }
         Insert: {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
           end_location?: string | null
-          is_open?: boolean | null
           start_location?: string | null
+          status?: string | null
         }
         Update: {
           carpool_id?: string
           created_at?: string
           created_by?: string | null
           end_location?: string | null
-          is_open?: boolean | null
           start_location?: string | null
+          status?: string | null
         }
         Relationships: []
       }
@@ -79,9 +79,9 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_carpool_with_requests: {
+      get_carpool_with_requests_for_user: {
         Args: {
-          search_carpool_id: string
+          user_id: string
         }
         Returns: {
           carpool_id: string
@@ -89,18 +89,18 @@ export type Database = {
           created_by: string
           start_location: string
           end_location: string
-          is_open: boolean
+          status: string
           req_id: string
           req_at: string
           req_by: string
-          req_is_waiting: boolean
+          req_status: string
           req_start_location: string
           req_end_location: string
         }[]
       }
       get_carpools: {
         Args: {
-          logged_in_user_id: string
+          exclude_user: string
           search_text: string
         }
         Returns: {
@@ -109,7 +109,26 @@ export type Database = {
           created_by: string
           start_location: string
           end_location: string
-          is_open: boolean
+          status: string
+        }[]
+      }
+      get_requests_from_user_with_carpool_details: {
+        Args: {
+          user_id: string
+        }
+        Returns: {
+          carpool_id: string
+          created_at: string
+          created_by: string
+          start_location: string
+          end_location: string
+          status: string
+          req_id: string
+          req_at: string
+          req_by: string
+          req_status: string
+          req_start_location: string
+          req_end_location: string
         }[]
       }
     }

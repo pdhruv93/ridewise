@@ -23,7 +23,7 @@ export async function CarpoolsList({
   }
 
   const { data } = await supabase.rpc("get_carpools", {
-    logged_in_user_id: user.id,
+    exclude_user: user.id,
     search_text: "",
   });
 
