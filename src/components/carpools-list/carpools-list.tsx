@@ -36,7 +36,12 @@ export async function CarpoolsList({
       scrollBehavior="smooth"
       align="start"
     >
-      <Heading>Preview a carpool</Heading>
+      <VStack gap="0" align="start">
+        <Heading fontSize="xl">Here are some carpool options</Heading>
+        <Heading fontSize="sm">
+          for your journey from {startLocation} to {endLocation}
+        </Heading>
+      </VStack>
 
       {(data as Tables<"carpools">[])?.map((carpool, index) =>
         carpool.start_location && carpool.end_location ? (
