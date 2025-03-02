@@ -1,7 +1,8 @@
 "use client";
 
-import type { CollectionItem } from "@chakra-ui/react";
-import { Select as ChakraSelect, Portal } from "@chakra-ui/react";
+import { CollectionItem } from "@chakra-ui/react/collection";
+import { Portal } from "@chakra-ui/react/portal";
+import { Select as ChakraSelect } from "@chakra-ui/react/select";
 import * as React from "react";
 
 interface SelectTriggerProps extends ChakraSelect.ControlProps {
