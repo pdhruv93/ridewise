@@ -16,19 +16,23 @@ export function ActionButtons({
   endLocation,
 }: ActionButtonsProps) {
   const { areRoutesGenerated, showRoute } = useShowRoute();
+  const startLocationValue = startLocation.current?.value;
+  const endLocationValue = endLocation.current?.value;
 
   if (!areRoutesGenerated) {
     return (
       <Button
         variant="solid"
         colorPalette="black"
-        onClick={() =>
-          showRoute(startLocation.current?.value, endLocation.current?.value)
-        }
+        onClick={() => showRoute(startLocationValue, endLocationValue)}
       >
         Preview
       </Button>
     );
+  }
+
+  if (!startLocationValue || !endLocationValue) {
+    return null;
   }
 
   return (
@@ -39,7 +43,9 @@ export function ActionButtons({
 
       <Button variant="outline" px="4" value="request" asChild>
         <NextLink
-          href={`/list/available_carpools?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
+          href={`/list/available_carpools?startLocation=${encodeURIComponent(
+            startLocationValue
+          )}&endLocation=${encodeURIComponent(endLocationValue)}`}
         >
           Join carpool
         </NextLink>
