@@ -1,9 +1,9 @@
 import { CarpoolCard } from "@/components/carpool-card/carpool-card";
 import { type Carpool } from "@/components/carpool-card/types";
 import { ActionButtons } from "@/components/join-carpool/action-buttons";
+import { generateToast } from "@/components/toaster/generate-toast";
 import { createClient } from "@/utils/supabase/server";
 import { VStack, Heading } from "@chakra-ui/react";
-import { redirect } from "next/navigation";
 
 export default async function JoinCarpool(props: {
   searchParams?: Promise<{
@@ -16,8 +16,12 @@ export default async function JoinCarpool(props: {
   const requestEndLocation = searchParams?.endLocation;
 
   if (!requestStartLocation || !requestEndLocation) {
-    // TODO: Generate toast notification
-    redirect("/");
+    return generateToast(
+      "error",
+      "invalid-search-params",
+      "Missing start and end locations for your request",
+      "/"
+    );
   }
 
   const supabase = await createClient();
