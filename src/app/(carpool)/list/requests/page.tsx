@@ -2,7 +2,7 @@ import { ActionButtons } from "@/components/requests-list/action-buttons";
 import { RequestCard } from "@/components/requests-list/request-card";
 import { type CarpoolRequest } from "@/components/requests-list/types";
 import { createClient } from "@/utils/supabase/server";
-import { Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react/typography";
 
 export default async function Requests() {
   const supabase = await createClient();

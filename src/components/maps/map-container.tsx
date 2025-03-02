@@ -2,7 +2,7 @@
 
 import React, { PropsWithChildren } from "react";
 import { GoogleMap, type Libraries, LoadScript } from "@react-google-maps/api";
-import { Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react/box";
 
 const defaultCenter = {
   lat: -3.745,

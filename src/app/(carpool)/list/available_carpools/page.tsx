@@ -3,7 +3,8 @@ import { type Carpool } from "@/components/carpool-card/types";
 import { ActionButtons } from "@/components/join-carpool/action-buttons";
 import { generateToast } from "@/components/toaster/generate-toast";
 import { createClient } from "@/utils/supabase/server";
-import { VStack, Heading } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react/stack";
+import { Heading } from "@chakra-ui/react/typography";
 
 export default async function JoinCarpool(props: {
   searchParams?: Promise<{

@@ -1,4 +1,7 @@
-import { Card, Heading, Tag, VStack, Text } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react/card";
+import { Heading, Text } from "@chakra-ui/react/typography";
+import { Tag } from "@chakra-ui/react/tag";
+import { VStack } from "@chakra-ui/react/stack";
 import { MdArrowForward } from "react-icons/md";
 import { type CarpoolRequest } from "./types";
 

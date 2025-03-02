@@ -1,4 +1,6 @@
-import { Card, HStack, Tag, VStack } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react/card";
+import { HStack, VStack } from "@chakra-ui/react/stack";
+import { Tag } from "@chakra-ui/react/tag";
 import { type Carpool } from "./types";
 import { MdLocationOn } from "react-icons/md";
 import { RequestsList } from "./requests-list";

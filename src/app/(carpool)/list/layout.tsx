@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react/stack";
 
 export default function RootLayout({
   children,

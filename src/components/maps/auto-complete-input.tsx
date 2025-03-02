@@ -1,4 +1,5 @@
-import { Box, Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react/box";
+import { Input } from "@chakra-ui/react/input";
 import { Autocomplete } from "@react-google-maps/api";
 import { RefObject } from "react";
 

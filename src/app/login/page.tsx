@@ -4,7 +4,7 @@ import {
   DialogHeader,
   DialogRoot,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@chakra-ui/react/dialog";
 import { LoginForm } from "@/components/login/login-form";
 
 export default function LoginModal() {

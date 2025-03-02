@@ -1,4 +1,6 @@
-import { List, VStack, Text } from "@chakra-ui/react";
+import { List } from "@chakra-ui/react/list";
+import { VStack } from "@chakra-ui/react/stack";
+import { Text } from "@chakra-ui/react/typography";
 import { type Carpool } from "./types";
 import { LuCircleCheck, LuCircleDashed } from "react-icons/lu";
 

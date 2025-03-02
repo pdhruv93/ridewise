@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react/input";
 import { useDeleteRequest } from "./useDeleteRequest";
 
 interface DeleteFormProps {

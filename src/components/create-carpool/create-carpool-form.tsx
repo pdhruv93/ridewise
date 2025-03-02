@@ -1,6 +1,7 @@
 "use client";
 
-import { Field, VStack } from "@chakra-ui/react";
+import { Field } from "@chakra-ui/react/field";
+import { VStack } from "@chakra-ui/react/stack";
 import { AutocompleteInput } from "@/components/maps/auto-complete-input";
 import { useCreateCarpool } from "./useCreateCarpool";
 import { ActionButtons } from "./action-buttons";

@@ -1,4 +1,5 @@
-import { Container, Heading } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react/container";
+import { Heading } from "@chakra-ui/react/typography";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { UserMenu } from "./profile-menu";
