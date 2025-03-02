@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Provider } from "@/components/ui/provider";
 import { Navbar } from "@/components/navbar/navbar";
 import MapContainer from "@/components/maps/map-container";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/toaster/toaster";
 
 export const metadata: Metadata = {
   title: "ridewise",
