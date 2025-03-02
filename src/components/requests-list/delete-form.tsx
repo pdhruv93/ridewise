@@ -1,4 +1,5 @@
-import { Button, Input } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@chakra-ui/react";
 import { useDeleteRequest } from "./useDeleteRequest";
 
 interface DeleteFormProps {
@@ -13,7 +14,7 @@ export default function DeleteForm({ requestId }: DeleteFormProps) {
       <form action={formAction}>
         <Input type="hidden" name="requestId" defaultValue={requestId} />
 
-        <Button type="submit" variant="solid" colorPalette="teal" px="4">
+        <Button type="submit" variant="solid" colorPalette="teal">
           Delete request
         </Button>
       </form>

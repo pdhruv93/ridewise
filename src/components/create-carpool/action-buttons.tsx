@@ -22,7 +22,6 @@ export function ActionButtons({
       <Button
         variant="solid"
         colorPalette="black"
-        px="4"
         onClick={() =>
           showRoute(startLocation.current?.value, endLocation.current?.value)
         }

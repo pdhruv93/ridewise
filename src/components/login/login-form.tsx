@@ -1,11 +1,12 @@
 "use client";
 
-import { VStack, Input, Button, FieldHelperText } from "@chakra-ui/react";
+import { VStack, Input, FieldHelperText } from "@chakra-ui/react";
 import { login } from "./login-action";
 import { Field } from "@/components/ui/field";
 import { useActionState, useEffect } from "react";
 import { initialState } from "./form-schema";
 import { toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
 
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, initialState);
@@ -40,7 +41,6 @@ export function LoginForm() {
           size="xs"
           loading={isPending}
           spinnerPlacement="start"
-          px="4"
         >
           Login
         </Button>

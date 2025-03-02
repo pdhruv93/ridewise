@@ -1,5 +1,6 @@
-import { Button, Input } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
 import { useSubmitRequest } from "./useSubmitRequest";
+import { Input } from "@chakra-ui/react/input";
 
 interface RequestFormProps {
   carpoolId: string;
