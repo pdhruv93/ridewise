@@ -2,7 +2,7 @@ import { ActionButtons } from "@/components/requests-list/action-buttons";
 import { RequestCard } from "@/components/requests-list/request-card";
 import { type CarpoolRequest } from "@/components/requests-list/types";
 import { createClient } from "@/utils/supabase/server";
-import { Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react/typography";
 
 export default async function Requests() {
   const supabase = await createClient();
@@ -10,7 +10,7 @@ export default async function Requests() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data } = await supabase.rpc("get_carpool_with_requests_for_user", {
+  const { data } = await supabase.rpc("get_requests_from_user", {
     user_id: user?.id,
   });
 
@@ -20,7 +20,7 @@ export default async function Requests() {
 
       {(data as CarpoolRequest[]).map((request) => (
         <RequestCard
-          key={`carpool-request- ${request.req_id}`}
+          key={`carpool-request-${request.req_id}`}
           request={request}
           action={
             <ActionButtons

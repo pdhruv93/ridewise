@@ -1,8 +1,9 @@
 "use client";
 
 import { useShowRoute } from "@/components/maps/useShowRoute";
-import { Button, ButtonGroup } from "@chakra-ui/react";
 import { RefObject } from "react";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@chakra-ui/react/button";
 import NextLink from "next/link";
 
 interface ActionButtonsProps {
@@ -21,7 +22,6 @@ export function ActionButtons({
       <Button
         variant="solid"
         colorPalette="black"
-        px="4"
         onClick={() =>
           showRoute(startLocation.current?.value, endLocation.current?.value)
         }
@@ -29,6 +29,10 @@ export function ActionButtons({
         Preview
       </Button>
     );
+  }
+
+  if (!startLocation.current?.value || !endLocation.current?.value) {
+    return null;
   }
 
   return (
@@ -39,7 +43,9 @@ export function ActionButtons({
 
       <Button variant="outline" px="4" value="request" asChild>
         <NextLink
-          href={`/list/available_carpools?startLocation=${startLocation.current?.value}&endLocation=${endLocation.current?.value}`}
+          href={`/list/available_carpools?startLocation=${encodeURIComponent(
+            startLocation.current?.value
+          )}&endLocation=${encodeURIComponent(endLocation.current?.value)}`}
         >
           Join carpool
         </NextLink>

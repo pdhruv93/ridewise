@@ -1,4 +1,6 @@
-import { AbsoluteCenter, Center, Heading, VStack } from "@chakra-ui/react";
+import { AbsoluteCenter, Center } from "@chakra-ui/react/center";
+import { Heading } from "@chakra-ui/react/typography";
+import { VStack } from "@chakra-ui/react/stack";
 
 import { Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";

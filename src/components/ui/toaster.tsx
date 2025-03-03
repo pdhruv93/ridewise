@@ -2,12 +2,12 @@
 
 import {
   Toaster as ChakraToaster,
-  Portal,
-  Spinner,
-  Stack,
   Toast,
   createToaster,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react/toast";
+import { Portal } from "@chakra-ui/react/portal";
+import { Spinner } from "@chakra-ui/react/spinner";
+import { Stack } from "@chakra-ui/react/stack";
 
 export const toaster = createToaster({
   placement: "bottom-end",
@@ -19,7 +19,7 @@ export const Toaster = () => {
     <Portal>
       <ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}>
         {(toast) => (
-          <Toast.Root width={{ md: "sm" }} p="4">
+          <Toast.Root width={{ md: "sm" }}>
             {toast.type === "loading" ? (
               <Spinner size="sm" color="blue.solid" />
             ) : (

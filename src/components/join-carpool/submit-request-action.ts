@@ -1,40 +1,36 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
-import { type FormState, initialState } from "./form-schema";
+import { generateToast } from "@/components/toaster/generate-toast";
 
 export async function submitRequest(
-  _test: FormState,
-  newFormData: FormData
-): Promise<FormState> {
-  const formData: FormState["formData"] = {
-    carpoolId: newFormData.get("carpoolId") as string,
-    requestStartLocation: newFormData.get("requestStartLocation") as string,
-    requestEndLocation: newFormData.get("requestEndLocation") as string,
-  };
-
+  carpoolId: string,
+  requestStartLocation: string,
+  requestEndLocation: string
+): Promise<unknown> {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const redirectPath = `/list/available_carpools?startLocation=${encodeURIComponent(
+    requestStartLocation
+  )}&endLocation=${encodeURIComponent(requestEndLocation)}`;
 
   const { error } = await supabase.from("carpool_requests").insert({
     requested_by: user?.id,
-    carpool_id: formData.carpoolId,
-    start_location: formData.requestStartLocation,
-    end_location: formData.requestEndLocation,
+    carpool_id: carpoolId,
+    request_start_location: requestStartLocation,
+    request_end_location: requestEndLocation,
   });
 
   if (error) {
-    return {
-      formData,
-      submitted: true,
-      errorMessage: error.message,
-    };
+    return generateToast("error", "join-carpool", error.message, redirectPath);
   }
 
-  return {
-    ...initialState,
-    submitted: true,
-  };
+  return generateToast(
+    "success",
+    "join-carpool",
+    "Request submitted",
+    redirectPath
+  );
 }

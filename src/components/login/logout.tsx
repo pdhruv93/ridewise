@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
-import { Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react/box";
 import { useRouter } from "next/navigation";
 
 export function Logout() {

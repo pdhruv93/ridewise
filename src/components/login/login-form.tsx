@@ -1,38 +1,29 @@
 "use client";
 
-import { VStack, Input, Button, FieldHelperText } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react/stack";
+import { Input } from "@chakra-ui/react/input";
+import { Field } from "@chakra-ui/react/field";
 import { login } from "./login-action";
-import { Field } from "@/components/ui/field";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { initialState } from "./form-schema";
-import { toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
 
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, initialState);
 
-  useEffect(() => {
-    if (state.submitted) {
-      toaster.create({
-        title: "Use the link sent on the mail to login",
-        type: "success",
-      });
-    }
-  }, [state.submitted]);
-
   return (
     <form action={formAction}>
       <VStack gap="4" align="flex-start" w="full">
-        <Field invalid={!!state.error} errorText={state.error} w="full">
+        <Field.Root invalid={!!state.error}>
           <Input
             name="email"
             placeholder="Enter your email to login/signup"
             defaultValue={state.formData.email}
             px="2"
           />
-          <FieldHelperText>
-            Use the link sent to the mail to login
-          </FieldHelperText>
-        </Field>
+
+          <Field.ErrorText>{state.error}</Field.ErrorText>
+        </Field.Root>
 
         <Button
           type="submit"
@@ -40,7 +31,6 @@ export function LoginForm() {
           size="xs"
           loading={isPending}
           spinnerPlacement="start"
-          px="4"
         >
           Login
         </Button>

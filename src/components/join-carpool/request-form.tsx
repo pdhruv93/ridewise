@@ -1,5 +1,6 @@
-import { Button, Input } from "@chakra-ui/react";
-import { useSubmitRequest } from "./useSubmitRequest";
+import { Button } from "@/components/ui/button";
+import { submitRequest } from "./submit-request-action";
+import { useActionState } from "react";
 
 interface RequestFormProps {
   carpoolId: string;
@@ -12,23 +13,19 @@ export default function RequestForm({
   requestStartLocation,
   requestEndLocation,
 }: RequestFormProps) {
-  const { formAction } = useSubmitRequest();
+  const formActionWithParams = submitRequest.bind(
+    null,
+    carpoolId,
+    requestStartLocation,
+    requestEndLocation
+  );
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, formAction] = useActionState(formActionWithParams, undefined);
 
   return (
     <>
       <form action={formAction}>
-        <Input type="hidden" name="carpoolId" defaultValue={carpoolId} />
-        <Input
-          type="hidden"
-          name="requestStartLocation"
-          defaultValue={requestStartLocation}
-        />
-        <Input
-          type="hidden"
-          name="requestEndLocation"
-          defaultValue={requestEndLocation}
-        />
-
         <Button type="submit" variant="solid" colorPalette="teal" px="4">
           Submit request
         </Button>

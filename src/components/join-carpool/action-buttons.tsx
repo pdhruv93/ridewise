@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@chakra-ui/react";
+import { Button } from "@/components/ui/button";
 import RequestForm from "./request-form";
 import { useShowRoute } from "@/components/maps/useShowRoute";
 
@@ -34,7 +34,6 @@ export function ActionButtons({
       <Button
         variant="solid"
         colorPalette="black"
-        px="4"
         onClick={() =>
           showRoute(carpoolStartLocation, carpoolEndLocation, wayPoints)
         }

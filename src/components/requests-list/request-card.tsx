@@ -1,6 +1,9 @@
-import { Card, Heading, Tag, VStack, Text } from "@chakra-ui/react";
-import { MdArrowForward } from "react-icons/md";
+import { Card } from "@chakra-ui/react/card";
+import { Heading } from "@chakra-ui/react/typography";
+import { Tag } from "@chakra-ui/react/tag";
+import { VStack } from "@chakra-ui/react/stack";
 import { type CarpoolRequest } from "./types";
+import { RouteDetails } from "@/components/route-details/route-details";
 
 interface RequestCardProps {
   request: CarpoolRequest;
@@ -29,17 +32,19 @@ export function RequestCard({ request, action }: RequestCardProps) {
             <VStack align="start" gap="0">
               <Heading fontSize="lg">Carpool route</Heading>
 
-              <Text>{request.start_location}</Text>
-              <MdArrowForward />
-              <Text>{request.end_location}</Text>
+              <RouteDetails
+                startLocation={request.start_location}
+                endLocation={request.end_location}
+              />
             </VStack>
 
             <VStack align="start" gap="0">
               <Heading fontSize="lg">Your route</Heading>
 
-              <Text>{request.req_start_location}</Text>
-              <MdArrowForward />
-              <Text>{request.req_end_location}</Text>
+              <RouteDetails
+                startLocation={request.req_start_location}
+                endLocation={request.req_end_location}
+              />
             </VStack>
           </VStack>
         </Card.Title>

@@ -1,7 +1,9 @@
-import { Card, HStack, Tag, VStack } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react/card";
+import { VStack } from "@chakra-ui/react/stack";
+import { Tag } from "@chakra-ui/react/tag";
 import { type Carpool } from "./types";
-import { MdLocationOn } from "react-icons/md";
 import { RequestsList } from "./requests-list";
+import { RouteDetails } from "@/components/route-details/route-details";
 
 interface CarpoolCardProps {
   carpool: Carpool;
@@ -25,15 +27,10 @@ export function CarpoolCard({ carpool, action }: CarpoolCardProps) {
               <Tag.Label>{carpool.requests?.length ?? 0} requests</Tag.Label>
             </Tag.Root>
 
-            <HStack>
-              <MdLocationOn />
-              {carpool.start_location}
-            </HStack>
-
-            <HStack>
-              <MdLocationOn />
-              {carpool.end_location}
-            </HStack>
+            <RouteDetails
+              startLocation={carpool.start_location}
+              endLocation={carpool.end_location}
+            />
 
             <RequestsList requests={carpool.requests} />
           </VStack>

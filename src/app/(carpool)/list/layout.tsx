@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react/stack";
 
 export default function RootLayout({
   children,
@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <VStack
       gap="4"
-      maxH="50vh"
+      maxH="75vh"
       overflowY="scroll"
       scrollbar="hidden"
       scrollBehavior="smooth"

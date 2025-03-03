@@ -1,10 +1,10 @@
+import { Avatar } from "@chakra-ui/react/avatar";
 import {
   MenuContent,
   MenuItem,
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { Avatar } from "@chakra-ui/react";
 import { Logout } from "@/components/login/logout";
 import NextLink from "next/link";
 

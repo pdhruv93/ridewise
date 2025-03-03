@@ -1,7 +1,7 @@
 import { CarpoolCard } from "@/components/carpool-card/carpool-card";
 import { groupCarpoolRequests } from "@/components/manage-own-carpools/utils";
 import { createClient } from "@/utils/supabase/server";
-import { Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react/typography";
 
 export default async function MyCarpools() {
   const supabase = await createClient();
