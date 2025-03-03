@@ -34,5 +34,6 @@ export async function login(
     "Use the link sent to the mail to login",
     "/login"
   );
+
   return initialState;
 }

@@ -1,8 +1,6 @@
-"use server";
-
 import { redirect } from "next/navigation";
 
-export async function generateToast(
+export function generateToast(
   toastType: "info" | "error" | "success",
   toastId: string,
   toastMessage: string,
