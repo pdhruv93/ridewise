@@ -21,6 +21,8 @@ export function LoginForm() {
             defaultValue={state.formData.email}
             px="2"
           />
+
+          <Field.ErrorText>{state.error}</Field.ErrorText>
         </Field.Root>
 
         <Button
