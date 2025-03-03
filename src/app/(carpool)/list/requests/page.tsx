@@ -20,7 +20,7 @@ export default async function Requests() {
 
       {(data as CarpoolRequest[]).map((request) => (
         <RequestCard
-          key={`carpool-request- ${request.req_id}`}
+          key={`carpool-request-${request.req_id}`}
           request={request}
           action={
             <ActionButtons
