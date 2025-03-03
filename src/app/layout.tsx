@@ -3,6 +3,8 @@ import { Provider } from "@/components/ui/provider";
 import { Navbar } from "@/components/navbar/navbar";
 import MapContainer from "@/components/maps/map-container";
 import { Toaster } from "@/components/toaster/toaster";
+import { Box } from "@chakra-ui/react/box";
+import { Card } from "@chakra-ui/react/card";
 
 export const metadata: Metadata = {
   title: "ridewise",
@@ -19,7 +21,13 @@ export default function RootLayout({
       <body>
         <Provider>
           <Navbar />
-          <MapContainer>{children}</MapContainer>
+          <MapContainer>
+            <Box px="20" py="20">
+              <Card.Root w="sm">
+                <Card.Body p="4">{children}</Card.Body>
+              </Card.Root>
+            </Box>
+          </MapContainer>
           <Toaster />
         </Provider>
       </body>
