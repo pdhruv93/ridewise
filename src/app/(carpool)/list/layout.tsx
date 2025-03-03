@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <VStack
       gap="4"
-      maxH="50vh"
+      maxH="75vh"
       overflowY="scroll"
       scrollbar="hidden"
       scrollBehavior="smooth"

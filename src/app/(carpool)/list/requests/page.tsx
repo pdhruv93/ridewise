@@ -10,7 +10,7 @@ export default async function Requests() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data } = await supabase.rpc("get_carpool_with_requests_for_user", {
+  const { data } = await supabase.rpc("get_requests_from_user", {
     user_id: user?.id,
   });
 
