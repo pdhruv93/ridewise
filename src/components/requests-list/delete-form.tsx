@@ -12,13 +12,12 @@ export default function DeleteForm({ requestId }: DeleteFormProps) {
   const [_, formAction] = useActionState(formActionWithParams, undefined);
 
   return (
-    <Button
-      type="submit"
-      formAction={formAction}
-      variant="solid"
-      colorPalette="teal"
-    >
-      Delete request
-    </Button>
+    <>
+      <form action={formAction}>
+        <Button type="submit" variant="solid" colorPalette="teal">
+          Delete request
+        </Button>
+      </form>
+    </>
   );
 }
