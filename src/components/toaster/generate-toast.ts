@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-export function generateToast(
+export async function generateToast(
   toastType: "info" | "error" | "success",
   toastId: string,
   toastMessage: string,
