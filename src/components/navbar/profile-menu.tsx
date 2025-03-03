@@ -4,7 +4,7 @@ import {
   MenuItem,
   MenuRoot,
   MenuTrigger,
-} from "@chakra-ui/react/menu";
+} from "@/components/ui/menu";
 import { Logout } from "@/components/login/logout";
 import NextLink from "next/link";
 
