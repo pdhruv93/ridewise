@@ -9,7 +9,8 @@ interface DeleteFormProps {
 
 export default function DeleteForm({ requestId }: DeleteFormProps) {
   const formActionWithParams = deleteRequest.bind(null, requestId);
-  const [formAction] = useActionState(formActionWithParams, undefined);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, formAction] = useActionState(formActionWithParams, undefined);
 
   return (
     <>
