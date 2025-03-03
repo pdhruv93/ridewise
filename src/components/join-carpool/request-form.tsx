@@ -24,7 +24,13 @@ export default function RequestForm({
   const [_, formAction] = useActionState(formActionWithParams, undefined);
 
   return (
-    <Button formAction={formAction} variant="solid" colorPalette="teal" px="4">
+    <Button
+      type="submit"
+      formAction={formAction}
+      variant="solid"
+      colorPalette="teal"
+      px="4"
+    >
       Submit request
     </Button>
   );
