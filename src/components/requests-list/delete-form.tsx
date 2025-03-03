@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@chakra-ui/react/input";
-import { useDeleteRequest } from "./useDeleteRequest";
+import { deleteRequest } from "./delete-request-action";
+import { useActionState } from "react";
 
 interface DeleteFormProps {
   requestId: string;
 }
 
 export default function DeleteForm({ requestId }: DeleteFormProps) {
-  const { formAction } = useDeleteRequest();
+  const formActionWithParams = deleteRequest.bind(null, requestId);
+  const [formAction] = useActionState(formActionWithParams, undefined);
 
   return (
     <>
