@@ -19,18 +19,18 @@ export async function submitRequest(
   const { error } = await supabase.from("carpool_requests").insert({
     requested_by: user?.id,
     carpool_id: carpoolId,
-    start_location: requestStartLocation,
-    end_location: requestEndLocation,
+    request_start_location: requestStartLocation,
+    request_end_location: requestEndLocation,
   });
 
   if (error) {
-    return generateToast(
-      "error",
-      "join-carpool",
-      "This is error",
-      redirectPath
-    );
+    return generateToast("error", "join-carpool", error.message, redirectPath);
   }
 
-  return generateToast("error", "join-carpool", "This is error", redirectPath);
+  return generateToast(
+    "success",
+    "join-carpool",
+    "Request submitted",
+    redirectPath
+  );
 }
