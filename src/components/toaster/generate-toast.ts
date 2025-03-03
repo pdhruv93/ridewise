@@ -4,13 +4,18 @@ export function generateToast(
   toastType: "info" | "error" | "success",
   toastId: string,
   toastMessage: string,
-  redirectPath = ""
+  redirectPath: string
 ) {
-  const redirectURL = `${redirectPath}?toast_type=${encodeURIComponent(
+  const alreadyHasSearchParams = redirectPath.indexOf("?") > -1;
+  const toastSearchParams = `toast_type=${encodeURIComponent(
     toastType
   )}&toast_id=${encodeURIComponent(toastId)}&toast_message=${encodeURIComponent(
     toastMessage
   )}`;
 
-  redirect(redirectURL);
+  const redirectURL = `${redirectPath}${
+    alreadyHasSearchParams ? "&" : "?"
+  }${toastSearchParams}`;
+
+  return redirect(redirectURL);
 }

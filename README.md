@@ -22,12 +22,6 @@ I first tried with Google Firestore, its a good solution but the since its a No-
 
 In order to avoid spam, the user would be allowed to create a new carpool every 30min. We already have the Postgres trigger which updates last creation time of user in the Users table. The frontend side logic needs to be created.
 
-### Allow requests with locations
-
-The current version does not allow a requseter to specify their own start and end locations. However they contact the creator and discuss.
-This makes it difficult for the reviewer to decide since they are not sure how much deviation the request causes.
-The later version will have options to specify start and end location which allows creator to view all waypoints on the map.
-
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

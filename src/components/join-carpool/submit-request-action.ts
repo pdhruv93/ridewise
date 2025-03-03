@@ -12,6 +12,9 @@ export async function submitRequest(
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const redirectPath = `/list/available_carpools?startLocation=${encodeURIComponent(
+    requestStartLocation
+  )}&endLocation=${encodeURIComponent(requestEndLocation)}`;
 
   const { error } = await supabase.from("carpool_requests").insert({
     requested_by: user?.id,
@@ -21,6 +24,13 @@ export async function submitRequest(
   });
 
   if (error) {
-    return generateToast("error", "join-carpool", error.message);
+    return generateToast(
+      "error",
+      "join-carpool",
+      "This is error",
+      redirectPath
+    );
   }
+
+  return generateToast("error", "join-carpool", "This is error", redirectPath);
 }
