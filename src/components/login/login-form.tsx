@@ -4,22 +4,12 @@ import { VStack } from "@chakra-ui/react/stack";
 import { Input } from "@chakra-ui/react/input";
 import { Field } from "@chakra-ui/react/field";
 import { login } from "./login-action";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { initialState } from "./form-schema";
 import { Button } from "@/components/ui/button";
-import { toaster } from "@/components/ui/toaster";
 
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(login, initialState);
-
-  useEffect(() => {
-    if (state.submitted) {
-      toaster.create({
-        title: "Use the link sent on the mail to login",
-        type: "success",
-      });
-    }
-  }, [state.submitted]);
 
   return (
     <form action={formAction}>
@@ -31,10 +21,6 @@ export function LoginForm() {
             defaultValue={state.formData.email}
             px="2"
           />
-
-          <Field.HelperText>
-            Use the link sent to the mail to login
-          </Field.HelperText>
         </Field.Root>
 
         <Button

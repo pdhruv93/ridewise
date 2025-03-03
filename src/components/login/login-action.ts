@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { formSchema, initialState, type FormState } from "./form-schema";
+import { generateToast } from "../toaster/generate-toast";
 
 export async function login(
   _: unknown,
@@ -16,7 +17,6 @@ export async function login(
   if (result.error?.errors) {
     return {
       formData,
-      submitted: false,
       error: "Invalid email",
     };
   }
@@ -25,15 +25,14 @@ export async function login(
   const { error } = await supabase.auth.signInWithOtp(formData);
 
   if (error) {
-    return {
-      formData,
-      submitted: false,
-      error: error.message,
-    };
+    return generateToast("error", "login", error.message, "/login");
   }
 
-  return {
-    ...initialState,
-    submitted: true,
-  };
+  generateToast(
+    "success",
+    "login",
+    "Use the link sent to the mail to login",
+    "/login"
+  );
+  return initialState;
 }
