@@ -28,7 +28,7 @@ The person searches the start and end location and either creates a carpool or s
 
 ### Crate a carpool
 
-Check the carpool requests submitted by you.
+Check the carpool requests submitted by you. On previewing you can see the Original Route(blue color) and the new route generated to drop you(black color). The distances and times are also displayed.
 <img src="./screenshots/Create_carpools.png" height="30%">
 
 ### Check the carpools created by you
