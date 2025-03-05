@@ -28,12 +28,12 @@ The person searches the start and end location and either creates a carpool or s
 
 ### Crate a carpool
 
-Check the carpool requests submitted by you. On previewing you can see the Original Route(blue color) and the new route generated to drop you(black color). The distances and times are also displayed.
+Check the carpool requests submitted by you.
 <img src="./screenshots/Create_carpools.png" height="30%">
 
 ### Check the carpools created by you
 
-Check the carpool requests submitted by you.
+Check the carpool requests submitted by you. On previewing you can see the Original Route(blue color) and the new route generated to drop you(black color). The distances and times are also displayed. Same view is also visible to the creator so that they can decide whether they want to take that extra effort.
 <img src="./screenshots/Requests.png" height="30%">
 
 ### Supabase Dashboard
