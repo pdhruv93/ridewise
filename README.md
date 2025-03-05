@@ -24,7 +24,7 @@ I first tried with Google Firestore, its a good solution but the since its a No-
 ### Crate a carpool
 
 The person searches the start and end location and either creates a carpool or searches some existing carpools.
-<img src="./screenshots/Show_carpool_route.png" height="500">
+<img src="./screenshots/Show_carpool_route.png" height="30%">
 
 ### Crate a carpool
 
@@ -43,8 +43,8 @@ Check the carpool requests submitted by you.
 ### Magic Link Email
 
 The Magic link is sent to the user's email address. Clicking on the links signs the user in. No need to remember passwords anymore.
-<img src="./screenshots/Sign_up.png" height="500">
-<img src="./screenshots/Magic_link.png" height="500">
+<img src="./screenshots/Sign_up.png" height="30%">
+<img src="./screenshots/Magic_link.png" height="30%">
 
 ## Future Improvements
 
