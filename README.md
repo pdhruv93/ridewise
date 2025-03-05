@@ -6,6 +6,9 @@ Next JS 15 is quite a hot topic on the frontend industry. What better way to do 
 
 ridewise is a simple web app that lets users create and join a carpool.
 
+> The app is not deployed to Vercel as the Google Maps API incurs cost and I don't want to be surprised with unexpected charges at the end of month.
+> Moreover Google API's dont allow you to put some capping based on the budget.
+
 ## Tech Stack used
 
 - **Frontend:** NextJS 15 + React19 + TypeScipt, [Chakra UI v3](https://chakra-ui.com/)
@@ -16,11 +19,42 @@ ridewise is a simple web app that lets users create and join a carpool.
 
 I first tried with Google Firestore, its a good solution but the since its a No-SQL approach, creating references, performing joins was quite difficult. With Supabase its a Postgres DB, so things are sorted.
 
+## Screenshots
+
+### Crate a carpool
+
+The person searches the start and end location and either creates a carpool or searches some existing carpools.
+<img src="./screenshots/Show_carpool_route.png" height="30%">
+
+### Crate a carpool
+
+Check the carpool requests submitted by you.
+<img src="./screenshots/Create_carpools.png" height="30%">
+
+### Check the carpools created by you
+
+Check the carpool requests submitted by you. On previewing you can see the Original Route(blue color) and the new route generated to drop you(black color). The distances and times are also displayed. Same view is also visible to the creator so that they can decide whether they want to take that extra effort.
+<img src="./screenshots/Requests.png" height="30%">
+
+### Supabase Dashboard
+
+<img src="./screenshots/Supabase_schema.png" height="30%">
+
+### Magic Link Email
+
+The Magic link is sent to the user's email address. Clicking on the links signs the user in. No need to remember passwords anymore.
+<img src="./screenshots/Sign_up.png" height="30%">
+<img src="./screenshots/Magic_link.png" height="30%">
+
 ## Future Improvements
 
 ### Limit the amount of creations
 
 In order to avoid spam, the user would be allowed to create a new carpool every 30min. We already have the Postgres trigger which updates last creation time of user in the Users table. The frontend side logic needs to be created.
+
+### Find only optimized carpools for user
+
+Currently when returning the available carpool options or carpool requests the system does not take into account if the carpool will fall within a sepcified route. All it shows is distance and extra time on the map and it's up to the person to decide whether they want to take that carpool. In future the isLocationOnEdge helper of Google Maps API can be used to acheieve the same.
 
 ## Deploy on Vercel
 
